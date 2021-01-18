@@ -1,0 +1,43 @@
+<tr class="group-container"
+    data-sakai-group-id="{{sakaiGroupId}}"
+    data-label="{{label}}"
+    data-sakai-group-title="{{this}}"
+    data-address="{{address}}">
+    <td class="col-sm-4"><div>{{this}}</div>
+        {{#if rosters}}
+            <div class="roster-name">{{roster}}</div>
+        {{/if}}
+        <div><button class="btn btn-xs btn-default show-members-btn">Members</button></div>
+    </td>
+    <td class="col-sm-6">
+        {{#if availableForSync}}
+            <button class="btn btn-xs btn-success create-group-btn">Create Google Group</button>
+        {{/if}}
+
+        {{#if markedForSync}}
+            <button class="btn btn-xs btn-default edit-btn pull-right">Edit</button>
+
+            <div class="group-description">{{label}}</div>
+
+            {{#if ../readyForUse}}
+                <div class="last-sync-indicator">Lasted synced {{lastSyncLabel}}</div>
+                <div class="form-group group-information">
+                    <label for="address-input-display">Google Group Address</label>
+                    <div class="input-group">
+                        <input id="address-input-display" class="form-control" type="text" readonly value="{{address}}">
+                        <span class="input-group-btn">
+                            <a style="display: none" href="javascript:void(0);" class="btn btn-default address-action-btn copy-to-clipboard" title="Copy to clipboard"><span class="glyphicon glyphicon-copy"></span></a>
+                        </span>
+                        <span class="input-group-btn">
+                            <a target="_blank" href="{{url}}" class="btn btn-default address-action-btn go-to-group" title="Go to group"><span class="glyphicon glyphicon-globe"></span></a>
+                        </span>
+                    </div>
+                    <p style="display: none" class="help-block clipboard-help-text platform-default">Press Control-c to copy to clipboard</p>
+                    <p style="display: none" class="help-block clipboard-help-text platform-mac">Press &#8984;-C to copy to clipboard</p>
+                </div>
+            {{else}}
+                <p class="group-pending-msg">Google Group is being created.  Please check back in a few minutes.</p>
+            {{/if}}
+        {{/if}}
+    </td>
+</tr>

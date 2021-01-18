@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>attendance</artifactId>
+        <groupId>org.sakaiproject.attendance</groupId>
+        <relativePath>../../pom.xml</relativePath>
+        <version>20180412</version>
+    </parent>
+    <name>attendance-jobs-pack</name>
+    <groupId>org.sakaiproject.attendance</groupId>
+    <artifactId>attendance-jobs-pack</artifactId>
+    <packaging>sakai-component</packaging>
+    <properties>
+        <deploy.target>components</deploy.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.sakaiproject.attendance</groupId>
+            <artifactId>attendance-api</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <resources/>
+    </build>
+</project>

@@ -1,0 +1,3 @@
+<div class="portletBody siteDescription" style="min-height:$height">
+$!siteInfo
+</div>

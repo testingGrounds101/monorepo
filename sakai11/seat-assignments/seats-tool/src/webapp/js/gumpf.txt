@@ -1,0 +1,140 @@
+
+<div :class="css_classes" :data-post-uuid="post.uuid">
+  <span v-if="post.unread" class="badge badge-primary">NEW</span>
+  <template v-if="post.editable && !editing">
+    <div class="btn-group pull-right">
+      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-lg fa-ellipsis-h"></i>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="javascript:void(0)" title="Edit Post" @click="edit()">
+            Edit Post
+          </a>
+        </li>
+      </ul>
+    </div>
+  </template>
+  <template v-if="editing">
+    <div class="conversations-post-content">
+      <post-editor ref="postEditor" :existing_attachments="post.attachments"
+            :baseurl="baseurl">
+        <template v-slot:content><div v-html="post.content"></div></template>
+        <template v-slot:actions>
+          <a class="button" @click="cancelEdit()">Cancel</a>
+        </template>
+      </post-editor>
+    </div>
+  </template>
+  <template v-else>
+    <template v-if="initialPost">
+      <div class="conversations-post-content">
+        <h2>{{topic_title}}</h2>
+        <p>
+          <small class="text-muted">
+            Created by {{post.postedByDisplayName}}
+            on {{formatEpochTime(post.postedAt)}}
+            <template v-if="post.version > 1"> <em>Edited</em></template>
+          </small>
+        </p>
+        <span v-html="post.content"></span>
+        <ul class="conversations-attachment-list">
+          <li v-for="a in post.attachments">
+            <i class="fa" v-bind:class='$parent.iconForMimeType(a.mimeType)'>
+            </i>
+            &nbsp;
+            <a :href='$parent.urlForAttachmentKey(a.key)'>{{a.fileName}}</a>
+          </li>
+        </ul>
+      </div>
+    </template>
+    <template v-else>
+      <small class="text-muted">
+        <strong>
+          {{post.postedByDisplayName}}
+        </strong>
+        &nbsp;&nbsp;&nbsp;
+        {{formatEpochTime(post.postedAt)}}
+        <template v-if="post.version > 1"> <em>Edited</em></template>
+      </small>
+      <div class="conversations-postedby-photo">
+        <img :src="'/direct/profile/'+post.postedBy + '/image'"/>
+      </div>
+      <div class="conversations-post-content">
+        <span v-html="post.content"></span>
+        <template v-if="!initialPost && allowLikes">
+            <span class="pull-right" style="margin-left: 10px;">
+              <small class="text-muted" v-if="post.likes > 0">{{post.likes}}</small>
+              <template v-if="post.likeable">
+                <template v-if="post.liked">
+                  <a href='javascript:void(0)' title="Unlike Post" @click="toggleLike()">
+                    <i class="fa fa-thumbs-up"></i>
+                  </a>
+                </template>
+                <template v-else>
+                  <a href='javascript:void(0)' title="Like Post" @click="toggleLike()">
+                    <i class="fa fa-thumbs-o-up"></i>
+                  </a>
+                </template>
+              </template>
+              <template v-else-if="post.likes > 0">
+                <i class="fa fa-thumbs-o-up"></i>
+              </template>
+            </span>
+        </template>
+        <template v-if="allowComments">
+            <div class="conversations-post-comments">
+              <ul class="conversations-attachment-list">
+                <li v-for="a in post.attachments">
+                  <i class="fa" v-bind:class='$parent.iconForMimeType(a.mimeType)'>
+                  </i>
+                  &nbsp;
+                  <a :href='$parent.urlForAttachmentKey(a.key)'>{{a.fileName}}</a>
+                </li>
+              </ul>
+              <template v-if="showCommentForm">
+                <div class="conversations-comment-form">
+                  <textarea class="form-control" placeholder="Comment on post..."
+                      v-model="commentContent"></textarea>
+                  <button class="button" v-on:click="addComment()">
+                    Post Comment
+                  </button>
+                  <button class="button" v-on:click="toggleCommentForm()">
+                    Cancel
+                  </button>
+                </div>
+              </template>
+              <template v-else>
+                <button class="button" v-on:click="toggleCommentForm()">
+                  Comment
+                </button>
+              </template>
+              <template v-if="post.comments && post.comments.length > 0">
+                <div v-for="comment in post.comments"
+                      class="conversations-post-comment"
+                      :data-post-uuid="comment.uuid">
+                  <div class="conversations-postedby-photo">
+                    <img :src="'/direct/profile/'+comment.postedBy + '/image'"/>
+                  </div>
+                  <div>
+                    <span v-if="comment.unread"
+                          class="badge badge-primary">NEW</span>
+                    <small class="text-muted">
+                      <strong>
+                        {{comment.postedByDisplayName}}
+                      </strong>
+                      &nbsp;&nbsp;&nbsp;
+                      {{formatEpochTime(comment.postedAt)}}
+                    </small>
+                  </div>
+                  <div class="conversations-comment-content">
+                    {{comment.content}}
+                  </div>
+                </div>
+              </template>
+            </div>
+        </template>
+      </div>
+    </template>
+  </template>
+</div>

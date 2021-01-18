@@ -1,0 +1,518 @@
+// --------------------------------------------------------------------------------------------------------------------
+//  Links
+// --------------------------------------------------------------------------------------------------------------------
+// FIXME this global change breaks links that should not have an underline
+////body a[href] {
+//  text-decoration: $nyu-link-decoration;
+//
+//  &:hover {
+//    text-decoration: $nyu-link-hover-decoration;
+//  }
+//}
+// Override any jQuery-UI styles
+body {
+  .ui-dialog, .ui-widget, .ui-widget-content {
+    a[href] {
+      color: $nyu-link-color;
+    }
+  }
+}
+// --------------------------------------------------------------------------------------------------------------------
+//  Banner/Logo Header
+// --------------------------------------------------------------------------------------------------------------------
+.#{$namespace}mainHeader{
+  .#{$namespace}headerLogo{
+    height: $nyu-header-height;
+    background-color: $nyu-header-background;
+    padding: 0 !important;
+
+    @media #{$nonPhone} {
+      width: 100% !important;
+      justify-content: flex-start !important;
+      border-bottom: $nyu-divider-width solid $nyu-purple;
+    }
+
+    .#{$namespace}headerLogo--institution{
+      background-size: 80% !important;
+      background-position: 10px center !important;
+      background-repeat: no-repeat !important;
+    }
+  }
+}
+@media #{$phone} {
+  .#{$namespace}mainHeader{
+    .#{$namespace}headerLogo{
+      .#{$namespace}headerLogo--institution:before{
+        font-size: 44px;
+        line-height: 44px;
+      }
+    }
+  }
+  #mastLogin {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+// --------------------------------------------------------------------------------------------------------------------
+//  Top Banner Actions
+// --------------------------------------------------------------------------------------------------------------------
+.is-maximized {
+  #loginLinks {
+    border-color: $nyu-header-menu-divider-color !important;
+  }
+}
+#mastLogin {
+  #loginForm {
+    input[type="text"], input[type="password"], input[type="email"] {
+     border: 1px solid #CCC !important;
+    }
+  }
+
+  .has-avatar {
+    .#{$namespace}userNav__submenuitem--profilepicture {
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+// BUGFIX for SAK-30453
+body {
+  @media #{$phone}{
+  #mastLogin .has-avatar .#{$namespace}userNav__submenuitem--username,
+  #mastLogin .has-avatar .#{$namespace}userNav__submenuitem--userid {
+    display: flex !important;
+  }
+  }
+}
+
+// --------------------------------------------------------------------------------------------------------------------
+//  Login
+// --------------------------------------------------------------------------------------------------------------------
+##{$namespace}xlogin{
+  top: 20% !important;
+  left: calc(50% - 15em) !important;
+  width: 30em !important;
+  h1 {
+    display: none;
+  }
+  .logo {
+    background-color: $nyu-header-background !important;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $nyu-divider-color;
+
+    background-size: 60% !important;
+    background-position: 10px center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+
+// --------------------------------------------------------------------------------------------------------------------
+//  Favorite Sites Navigation
+// --------------------------------------------------------------------------------------------------------------------
+.#{$namespace}topHeader{
+  position: relative;
+}
+@media #{$nonPhone} {
+  #linkNav {
+    ul {
+      li.#{$namespace}sitesNav__menuitem {
+        ul {
+          li {
+            &.#{$namespace}sitesNav__submenuitem__gotosite {
+              border-top: 1px solid $nyu-favorite-sites-tool-menu-divider-color !important;
+
+              > a:after {
+                font-family: FontAwesome;
+                content: '\f178';
+                margin-left: 10px;
+                color: $nyu-favorite-sites-tool-menu-icon-color !important;
+              }
+
+              &:hover {
+                border-top: 1px solid $nyu-favorite-sites-tool-menu-divider-color !important;
+
+                > a:after {
+                  color: $nyu-favorite-sites-tool-menu-item-hover-icon-color !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#portalMask {
+  background: $nyu-all-sites-mask-background !important;
+}
+
+#selectSiteModal{
+  #selectSite {
+    .tab-pane {
+      outline: none;
+
+      #otherSiteSearch {
+        text-align: left !important;
+        margin: 1em 0;
+        position: relative;
+
+        #txtSearch {
+          padding-left: 10px;
+        }
+      }
+
+      ul.favoriteSiteList {
+        > li {
+          .toolMenus {
+
+            &.toolMenusActive {
+              .fa.fa-chevron-down:before {
+                content: '\f077' !important;
+              }
+            }
+          }
+
+          .fav-drag-handle {
+            right: 0 !important;
+            top: 0 !important;
+            position: absolute;
+            padding: 0;
+            color: #E5E5E5 !important;
+            text-decoration: none;
+            text-align: center;
+            width: 20px;
+            height: 30px;
+            overflow: hidden;
+
+            i {
+              display: none;
+            }
+
+            &:before {
+              font-family: 'nyu-classes-icons' !important;
+              content: '\f1c5' !important;
+              font-size: 18px;
+              text-align: center;
+              display: inline-block;
+              width: 6px;
+              line-height: 32px;
+            }
+
+            &:hover {
+              color: $nyu-all-sites-button-drag-hover-color !important;
+            }
+          }
+
+          &:hover {
+            .fav-drag-handle {
+              color: $nyu-all-sites-button-drag-hover-color !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Fix for CLASSES-2330 in Lessons
+body.active-more-sites {
+  .#{$namespace}mainHeader, .#{$namespace}skipNav__menu {
+    z-index: 100002 !important;
+  }
+  #portalMask {
+    z-index: 100003 !important;
+  }
+  #selectSiteModal {
+    z-index: 100004 !important;
+  }
+}
+
+// CLASSES-3459 Add padding between home icon and Home text
+body {
+  .#{$namespace}sitesNav__menu {
+    .#{$namespace}sitesNav__menuitem.#{$namespace}sitesNav__menuitem--myworkspace {
+      .link-container {
+        .fa.fa-home {
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+// CLASSES-3468 Styling issues
+body {
+  #selectSiteModal {
+    ul.favoriteSiteList > li {
+      overflow: visible;
+    }
+  }
+}
+
+// CLASSES-3592 Lessons subnav top link allow wrapping (truncated using JavaScript see lessons-subnav.js)
+body {
+  #toolMenu ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--title,
+  #subSites ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--title,
+  .floatingToolMenu ul li .Mrphs-toolsNav__menuitem--link .Mrphs-toolsNav__menuitem--title {
+    white-space: normal;
+    word-break: break-word;
+    text-overflow: unset;
+  }
+  #toolMenu li.has-lessons-sub-pages ul.lessons-sub-page-menu li a.has-prerequisite:hover:after {
+    content: ' \f05e' !important;
+    position: static !important;
+    top: initial !important;
+    right: initial !important;
+    display: contents !important;
+  }
+}
+
+// --------------------------------------------------------------------------------------------------------------------
+//  Timeout Alert
+// --------------------------------------------------------------------------------------------------------------------
+#timeout_alert_body {
+  box-shadow: $nyu-timeout-alert-shadow !important;
+  background: $nyu-timeout-alert-background-color !important;
+}
+
+// --------------------------------------------------------------------------------------------------------------------
+//  Site Hierarchy / Reset Button
+// --------------------------------------------------------------------------------------------------------------------
+body {
+  .#{$namespace}siteHierarchy {
+    .#{$namespace}hierarchy--parent-sites {
+      display: none;
+    }
+  }
+}
+// CLASSES-3499 CLASSES-3556 show reset button for mobile, but nothing else
+body {
+  #skipNav {
+    .#{$namespace}skipNav--toolName {
+      display: none;
+
+      @media #{$phone} {
+        display: block !important;
+      }
+    }
+  }
+}
+// CLASSES-3499 CLASSES-3554 show different label for skipnav depending on viewport
+body {
+  #skipNav {
+    .mobile-only {
+      display: none;
+    }
+    .desktop-only {
+      display: inline-block
+    }
+    @media #{$phone} {
+      .mobile-only {
+        display: inline-block;
+      }
+      .desktop-only {
+        display: none;
+      }
+    }
+  }
+}
+
+
+// --------------------------------------------------------------------------------------------------------------------
+//  Main Content
+// --------------------------------------------------------------------------------------------------------------------
+.portletBody {
+  // some morpheus elements are sometimes clipped :?(
+  // so we need some padding/margin
+  padding: 0 14px !important;
+  margin: 6px 0 0 0 !important;
+}
+.#{$namespace}container--toolTitleNav {
+  // so container header lines up with the container body
+  padding: 10px 14px !important;
+}
+
+// CLASSES-3458 Reduce height of left menu collapse button
+body {
+  #toolMenu, #subSites, .floatingToolMenu {
+    .#{$namespace}collapseTools {
+      height: $nyu-tool-nav-item-height !important;
+
+      .#{$namespace}toggleNav {
+        height: $nyu-tool-nav-item-height !important;
+      }
+    }
+  }
+}
+
+// CLASSES-3460 Tool icon alignment changes when expanding / collapsing left menu
+body {
+  #toolMenu, #subSites, .floatingToolMenu {
+    .#{$namespace}toolsNav__menuitem--link {
+      .#{$namespace}toolsNav__menuitem--icon {
+        text-align: left !important;
+        padding-left: 9px !important;
+      }
+    }
+  }
+  &.Mrphs-toolMenu-collapsed {
+    #toolMenu, #subSites, .floatingToolMenu {
+      .#{$namespace}toolsNav__menuitem--link {
+        text-align: left !important;
+      }
+    }
+  }
+}
+
+// -------------------------------------------------------------------------------------------------------------------
+//  Sites navigation
+// -------------------------------------------------------------------------------------------------------------------
+#topnav_container {
+  .#{$namespace}sitesNav__menuitem.is-selected > a:hover {
+    color: $sites-nav-menu-item-selected-color !important;
+  }
+  .#{$namespace}sitesNav__menuitem > a:hover {
+    border-color: #7F7F7F;
+  }
+}
+
+// -------------------------------------------------------------------------------------------------------------------
+//  Page Body / Main Content
+// -------------------------------------------------------------------------------------------------------------------
+body {
+  &.#{$namespace}portalBody{
+    background: $nyu-body-background-color !important;
+
+    @media #{$phone}{
+      background: $nyu-mobile-body-background-color !important;
+    }
+  }
+}
+#pageBody{
+  @media #{$phone}{
+    padding: 0 !important;
+  }
+}
+.#{$namespace}mainContent{
+  border-bottom: 1px solid #EEE;
+}
+
+// -------------------------------------------------------------------------------------------------------------------
+//  PA System
+// -------------------------------------------------------------------------------------------------------------------
+.pasystem-banner-alert-toggle-list-item {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border: none !important;
+
+  @media #{$nonPhone} {
+    top: 0 !important;
+    padding: 0px 8px !important;
+  }
+  @media #{$phone} {
+    top: 0 !important;
+    left: auto !important;
+    right: 80px !important;
+    padding: 0 !important;
+  }
+
+  a {
+    text-decoration: none !important;
+  }
+}
+
+// CLASSES-3565 Disable for mobile
+body {
+  @media #{$phone} {
+    .pasystem-banner-alerts,
+    .featherlight.pasystem-popup {
+      display: none !important;
+    }
+  }
+}
+
+// -------------------------------------------------------------------------------------------------------------------
+//  Unpublished notice
+// -------------------------------------------------------------------------------------------------------------------
+.#{$namespace}siteStatus{
+  &.is-unpublished {
+    color: $nyu-site-status-text-color !important;
+    background-color: $nyu-site-status-background-color !important;
+    height: $nyu-site-status-height - 1;
+    padding: 0 !important;
+    border-color: $nyu-site-status-border-color !important;
+    border-radius: $nyu-site-status-border-radius !important;
+
+    @media #{$phone} {
+      height: $nyu-site-status-height - 10;
+    }
+
+    h4 {
+      margin: 0 !important;
+      line-height: $nyu-site-status-height;
+      padding: 0 !important;
+
+      @media #{$phone} {
+        line-height: $nyu-site-status-height - 10;
+      }
+    }
+
+    button {
+      top: 4px !important;
+      line-height: 14px !important;
+      margin-left: 10px !important;
+
+      @media #{$phone} {
+        top: 0 !important;
+      }
+    }
+  }
+}
+
+// -------------------------------------------------------------------------------------------------------------------
+//  Footer
+// -------------------------------------------------------------------------------------------------------------------
+body {
+  .#{$namespace}footer {
+    margin: 0 !important;
+    border-left: 1px solid #f0f0f0;
+  
+    .selectedTimeZone,
+    ul {
+      margin: 0 0 6px;
+    }
+  }
+}
+
+// -------------------------------------------------------------------------------------------------------------------
+//  Accessibility
+// -------------------------------------------------------------------------------------------------------------------
+body {
+  *:focus,
+  input:focus,
+  select:focus,
+  button:focus,
+  .button:focus,
+  #mastLogin #loginForm .Mrphs-loginForm__button:focus,
+  .Mrphs-siteStatus.is-unpublished button:focus,
+  .Mrphs-sakai-schedule .viewLinkControl:focus,
+  .lessonsToolButton:focus,
+  .Mrphs-sakai-message-bundle-manager .dataTables_wrapper table a[role="button"]:focus,
+  .Mrphs-sakai-message-bundle-manager .dataTables_export a:focus,
+  ul#otherSitesMenu li:not(.otherSitesMenuClose) a:focus,
+  #cookie-notice #cookie-notice-close:focus,
+  button.ui-state-default:focus,
+  .btn.btn-default:focus,
+  #toolMenu ul li.Mrphs-collapseTools button:focus,
+  #subSites ul li.Mrphs-collapseTools button:focus,
+  .floatingToolMenu ul li.Mrphs-collapseTools button:focus,
+  .Mrphs-toolTitleNav .Mrphs-toolTitleNav__link:focus {
+    outline: $focus-outline-width $focus-outline-style $focus-outline-color !important;
+    outline-offset: $focus-outline-offset !important;
+    overflow: -moz-hidden-unscrollable;
+    z-index: 999999;
+  }
+}

@@ -1,0 +1,347 @@
+##<!-- $Header: /cvs/sakai2/legacy/tools/src/webapp/vm/sitesetup/chef_site-newSiteCourse.vm,v 1.3 2005/05/25 17:42:01 gsilver.umich.edu Exp $ -->
+<script type="text/javascript">
+<!-- hide from non-JS browsersf
+function toggle(toggleKey, begin, end) {
+    var checkboxes = document.getElementsByName("providerCourseAdd");
+    for (i=begin; i<end; i++){
+        if (checkboxes[toggleKey].checked){
+           checkboxes[i].checked = true;
+        }
+	else{
+           checkboxes[i].checked = false;
+	}
+    }
+    setContinueButton();
+}
+
+function setContinueButton(){
+    var selected = false;
+    var checkboxes = document.getElementsByName("providerCourseAdd");
+    for (i=0; i<checkboxes.length; i++){
+        if (checkboxes[i].checked){
+          selected = true;
+          break;
+        }
+    }
+    if (!selected) {
+	disableContinueButton();
+    }
+    else{
+	enableContinueButton();
+    }
+}
+
+function enableContinueButton(){
+    var continueButton = document.getElementById("continueButton");
+    var addClassButton = document.getElementById("addClassButton");
+    if (continueButton != undefined){
+      continueButton.disabled = false;
+    }
+    if (addClassButton != undefined){
+      addClassButton.disabled = false;
+    }
+}
+
+function disableContinueButton(){
+    var continueButton = document.getElementById("continueButton");
+    var addClassButton = document.getElementById("addClassButton");
+    if (continueButton != undefined){
+      continueButton.disabled = true;
+    }
+    if (addClassButton != undefined){
+      addClassButton.disabled = true;
+    }
+}
+
+function selectAll(begin, end) {
+    var checkboxes = document.getElementsByName("providerCourseAdd");
+    for (i=begin; i<end; i++){
+	document.getElementById('row-course' + i).className='selectedSelected';
+	checkboxes[i].checked = true;
+	checkboxes[i].disabled = false;
+    }
+    document.getElementById("selectAll"+begin).style.display = "none";    
+    document.getElementById("unselectAll"+begin).style.display = "block";    
+    enableContinueButton();
+}
+
+function unselectAll(begin, end) {
+    var checkboxes = document.getElementsByName("providerCourseAdd");
+    for (i=begin; i<end; i++){
+		document.getElementById('row-course' + i).className='';
+		checkboxes[i].checked = false;
+		checkboxes[i].disabled = false;
+    }
+    document.getElementById("unselectAll"+begin).style.display = "none";    
+    document.getElementById("selectAll"+begin).style.display = "block";    
+    setContinueButton();
+}
+
+function enableCheckBox(index) {
+    var checkboxes = document.getElementsByName("providerCourseAdd");
+    checkboxes[index].disabled = false;
+    checkboxes[index].checked = true;
+    enableContinueButton();
+}
+
+function submitAddNotListed(){
+    manual_add = document.getElementById("manual_add");
+    manual_add.value="true";
+    continueButton = document.getElementById("continueButton");
+    continueButton.click();
+    return false;
+}
+
+function submitFindCourse(){
+    find_course = document.getElementById("find_course");
+    find_course.value="true";
+    var option = document.getElementById("option");
+   	option.value='continue';
+    document.addCourseForm.submit();
+    return false;
+}
+
+function submitChangeUser(){
+    index = document.getElementById("index");
+    index.value="1";
+    document.addCourseForm.submit();  // SAK-22915
+}
+
+function redirectBasedOnSelection(){
+   var selected = false;
+   var checkboxes = document.getElementsByName("providerCourseAdd");
+    for (i=0; i<checkboxes.length; i++){
+    	if (checkboxes[i].checked){
+    	  selected = true;
+    	  break;
+    	}
+    }
+    if (!selected) {
+    	find_course = document.getElementById("find_course");
+    	find_course.value="true";
+    }
+    continueButton = document.getElementById("continueButton");
+    continueButton.click();
+    document.addCourseForm.submit(); 
+    return false;
+}
+
+// -->
+</script>
+<script type="text/javascript" src="/sakai-site-manage-tool/js/site-manage.js"></script>
+<script type="text/javascript" src="/sakai-site-manage-tool/js/site-manage.nyu.js?version=1603943498"></script>
+<link type="text/css" href="/sakai-site-manage-tool/css/site-manage.nyu.css?version=1502944368" rel="stylesheet" media="screen" />
+
+<div class="portletBody">
+	#if (!$!site)
+		<h3>$tlang.getString("nscourse.creating")</h3>
+		<p class="step">
+			$tlang.getString("nscourse.course_sections_selection") - $term.title
+		</p>
+	#else
+		<h3>$tlang.getString("nscourse.edit") <span class="highlight">$!siteTitle</span></h3>
+		<p class="step">
+			$tlang.getString("nscourse.course_sections_selection") - $term.title
+		</p>
+	#end
+	#if ($alertMessage)<div class="alertMessage">$tlang.getString("gen.alert") $alertMessage</div>#end
+	<div class="site-setup-messages">
+		<p class="">Please select the section(s) to be included in your course site. Selecting multiple sections will combine them into <b>one</b> course site.</p>
+		#if (!$site && $termCourseList && $termCourseList.size() > 1)
+			<p class=""><b>Note:</b> You may only create one course site at one time. To create additional course sites you will need to re-enter the Set Up Course Sites tool.</p>
+		#end
+	</div>
+	<form name = "addCourseForm" method="post" action="#toolForm($action)">
+		#if ($site)
+			## instead of showing the select for terms... put a hidden input for the current term
+			<input type="hidden" id="selectTerm" name="selectTerm" value="$term.eid"/>
+		#end
+
+			#if ($!termCourseList && $!termCourseList.size() > 0)
+				#if (($!providerCourseList && $!providerCourseList.size() != 0) || ($!requestedCourseList && $!requestedCourseList.size() != 0))
+					<p class="">$tlang.getString("nscourse.youmay")</p>
+				#end
+				
+				## display only subject, course number and section
+				##and finally - the labels work, but having commas in the id does not validate. Can we concatenate or replace with underscore? Here is reqs on ids and labels: an id attribute value must begin with a letter (A-Z or a-z) and consist of the following characters: (A-Z), (a-z), (0-9), hyphens (-), underscores (_), colons (:), and periods (.).
+				#set($crosslisted=0)	
+				#set($courseNumber=0)
+				<div id="findCoursePanels" 
+					#if (!$site)
+						class="editing-roster"
+					#end
+				>
+				#foreach($courseObject in $termCourseList)
+					#set($sectionCount=0)
+					#set($sectionAttachedCount = 0)
+					#foreach($courseOfferingObject in $courseObject.courseOfferingObjects)
+							#set($sectionCount=$sectionCount+$courseOfferingObject.sections.size())
+							#foreach($sectionObject in $courseOfferingObject.sections)
+								#if ($!sectionObject.attached)
+									#set($sectionAttachedCount = $sectionAttachedCount + 1)
+								#end
+							#end
+					#end
+					<div class="collapsible-panel 
+						#if ($sectionAttachedCount == $sectionCount)
+							force-inactive inactive
+						#end
+					">
+						<a href="javascript:void(0);" class="collapsible-panel-header">$courseObject.title <span class="section-count">($sectionCount)</span></a>
+						<div class="collapsible-panel-content">
+							<ul>
+								#foreach($courseOfferingObject in $courseObject.courseOfferingObjects)
+									#if ($providerCourseList)
+										#set($endKey = $courseNumber + $!courseOfferingObject.sections.size() - $!providerCourseList.size())
+									#else
+										#set($endKey = $courseNumber + $!courseOfferingObject.sections.size())
+									#end
+						#foreach($sectionObject in $courseOfferingObject.sections)
+							#if (!$!providerCourseList.contains("$!sectionObject.eid")) 
+								<li 
+									#if ($!selectedProviderCourse.contains("$!sectionObject.eid") || 		$!selectedAuthorizerCourse.contains("$!sectionObject.eid") )
+										class="selectedSelected"
+									#end
+									id="row-course$courseNumber"
+									data-sponsorsectioneid="$!sectionObject.sponsorSectionEid"
+									data-eid="$!sectionObject.eid"
+									#if ($!blockedProviderIds.contains("$!sectionObject.eid"))
+										data-blocked="true"
+									#end
+									#if ($!allowedProviderIds.contains("$!sectionObject.eid"))
+										data-allowed="true"
+									#end
+								>
+							## If course is already linked to site,
+							##   display an icon instead of a checkbox (it shouldn't be selectable)
+							## Otherwise
+							##   Show the checkbox and a warning message
+							#if ($!sectionObject.attached)
+								<span class="section-attached-icon"></span>
+							#else
+								<input type="checkbox" name="providerCourseAdd" value="$!sectionObject.eid" id="course$courseNumber"
+								#if ($!selectedProviderCourse.contains("$!sectionObject.eid") || $!selectedAuthorizerCourse.contains("$!sectionObject.eid") )
+									checked="checked"
+								#end 
+								#if ((!$!selectedProviderCourse.contains("$!sectionObject.eid") || !$!selectedAuthorizerCourse.contains("$!sectionObject.eid")) && $!sectionObject.attached)
+									disabled="disabled"
+								#end
+								onclick="javascript:setContinueButton();"
+								onchange="this.checked ? document.getElementById('row-course$courseNumber').className='selectedSelected' :document.getElementById('row-course$courseNumber').className=''"
+								/>
+							#end
+
+							<label for="course$courseNumber">$!sectionObject.title <span class="eid">$!sectionObject.eid</span></label>
+
+									#if ($!sectionObject.attached)
+										<span class="site-already-linked-msg">A site including this course section already exists</span>
+									#end
+									#set ($courseNumber = $courseNumber +1)
+								</li>
+							#end
+						#end
+					#end
+					</ul>
+			   </div> <!-- .collapsible-panel-content -->
+			</div> <!-- #findCoursePanels -->
+					<p></p>
+				 #end
+			#else
+				## no registered course
+				<p class="alertMessage">Sorry, but for this term there are no courses available to you.</>
+				<p>Please contact <a href="mailto:askits@nyu.edu">askits@nyu.edu</a> if your courses are not displaying as expected.</p>
+			#end	
+				## instructor could choose to go to the manual creation page
+				<input  type="hidden" name="manualAdds" value="x" id="manual_add"/>
+				<input type="hidden" name="find_course"  value="x" id="find_course"/>
+				
+
+		<input type="hidden" name="back" value="$!backIndex" />
+		<input id="index" type="hidden" name="templateIndex" value="$!templateIndex" />
+		<input type="hidden" name="option" id="option" value="x" />
+			#if (!$site)
+				## if site creation is based on template, this could be the final step!
+				#if ($!basedOnTemplate) 
+					<div class="" id ="nextInstructions">
+						<span id="templateNonCourseInstruction" style="display:block">$tlang.getString("sitetype.templatefinalstepinstruction")</span>
+					</div>
+				#end
+				<p class="act">
+				<input
+					class="active"
+					disabled="true"
+					type="button" 
+					accesskey="s"
+					name="Continue" 
+					id="continueButton" 
+					#if ($!basedOnTemplate) value="$tlang.getString('sitetype.done')" #else value="$tlang.getString('gen.continue')" #end
+					onclick="showNotif('submitnotif','continueButton','addCourseForm');document.addCourseForm.option.value='continue'; document.addCourseForm.submit(); return false;"
+					/>
+				<input
+					type="button" 
+					accesskey="b"
+					name="Back" 
+					id="backButton" 
+					value="$tlang.getString('gen.back')"
+					onclick="document.addCourseForm.option.value='back'; document.addCourseForm.submit(); return false;"
+					/>
+				<input
+					type="button" 
+					accesskey="x"
+					name="Cancel" 
+					id="cancelButton" 
+					value="$tlang.getString('gen.cancel')"
+					onclick="document.addCourseForm.option.value='cancel'; document.addCourseForm.submit(); return false;"
+					/>
+					<span id="submitnotif" style="visibility:hidden">$tlang.getString("gen.proces")</span>
+				</p>
+
+				<!-- call standard continue method for existing sites -->
+				<input type="hidden" name="eventSubmit_doContinue_populate" value="x" />
+			#else
+				<p class="act">
+				<input type="hidden" name="option" id="option" value="x" />
+				<input
+					disabled="true"
+					type="button" 
+					accesskey="s"
+					name="AddClass" 
+					id="addClassButton" name="addClassButton"
+					value="$tlang.getString('gen.continue')"
+					onclick="showNotif('submitnotif','addClassButton','addCourseForm'); document.getElementById('option').value='add'; document.addCourseForm.submit(); return false;"
+					/>
+				<input
+					type="button" 
+					accesskey="x"
+					name="Cancel" 
+					id="Cancel" 
+					value="$tlang.getString('gen.cancel')"
+					onclick="document.getElementById('option').value='cancel_edit'; document.addCourseForm.submit(); return false;"
+				/>
+				<span id="submitnotif" style="visibility:hidden">$tlang.getString("gen.proces")</span>
+
+				<!-- call populate method for new sites -->
+				<input type="hidden" name="eventSubmit_doContinue_new_course" value="x" />
+			</p>
+			#end
+
+			<div id="multipleSectionsWarningDialog" title="Multiple Sections Selected" style="display: none;">
+				<p>You have selected multiple sections to combine into one course site:</p>
+				<div class="step course-listing"><!-- course list will be generated here --></div>
+				<p>Are you sure you want to combine these sections?</p>
+				<p class="act">
+				  <input type="button" id="continueDialogButton" name="continueDialogButton" class="primary" value="$tlang.getString('gen.continue')" />
+				  <input type="button" id="cancelContinueDialogButton" name="cancelContinueDialogButton" value="Cancel" />
+				  <span id="dialogsubmitnotif" class="submitnotif" style="display:none;">$tlang.getString("gen.proces")</span>
+				</p>
+			</div>
+
+		<input type="hidden" name="sakai_csrf_token" value="$sakai_csrf_token" />
+	</form>
+	<script type="text/javascript">
+	// <![CDATA[
+	setContinueButton();
+	// ]]>
+	</script> 
+	
+</div>

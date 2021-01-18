@@ -1,0 +1,253 @@
+##{$namespace}sakai-roster {
+
+    .filterLabel {
+        vertical-align:top;
+        font-weight:bold;
+    }
+
+    .instruction.rosterTitleMessage {
+        display: block;
+    }
+
+    .role {
+        font-weight: bold;
+    }
+
+    .rosterRoleTopLine {
+        padding-top:10px;
+    }
+
+    .rosterActionAlignment {
+        vertical-align:top;
+    }
+
+    .rosterActions {
+        margin-top:0.5em;
+    }
+
+    .connection-email {
+        background-image: url(/library/image/silk/email.png);
+    }
+
+    .roster-pictureview {
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-width: 1px;
+        @include border-radius(5px);
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 161px;
+        .roster-pictureview-picture {
+            width: 150px;
+            height: 150px;
+            img {
+                width: 150px;
+                max-height: 150px;
+            }
+        }
+        .roster-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    #roster-loading-image {
+        display: none;
+    }
+
+    .roster-table {
+        display: table;
+        width: 100%;
+
+        .roster-table-header-group {
+            display: table-header-group;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        .roster-table-row-group {
+            display: table-row-group;
+        }
+
+        .roster-table-row {
+            display: table-row;
+            margin-bottom: 5px;
+
+            .roster-table-cell {
+                display: table-cell;
+                padding-right: 10px;
+                white-space: nowrap;
+
+                .roster-picture {
+                    min-width: 55px;
+                    min-height: 55px;
+                    max-width: 55px;
+                    max-height: 55px;
+                    padding: 0;
+                    margin: 15px 0 15px 10px;
+                    border: 1px solid #666666;
+                    border-radius: 37.5px;
+                    object-fit: cover;
+                }
+
+                .roster-mobile-label {
+                    display: none;
+                    font-weight: bold;
+                    padding-right: 10px;
+                }
+
+                .roster-user-properties {
+                    list-style: none;
+                }
+            }
+            .roster-last-visit-time-cell {
+                font-size: 0.9em;
+            }
+
+            .roster-name-cell {
+                max-width: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        .roster-member:nth-child(odd){
+            background: $tool-tab-background-color;
+        }
+    }
+
+    .roster-picture {
+        width: 50px;
+    }
+
+    #roster_content{
+        margin-top: 1em;
+    }
+
+    #summary{
+        margin-left: 2px;
+    }
+
+    .roster-group-cell {
+        display: inline-block;
+        min-width: 60px !important;
+        max-width: 140px !important;
+        white-space: normal !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+
+        .roster-group-link {
+            white-space: nowrap !important;
+            font-size: smaller;
+        }
+    }
+
+    .roster-no-groups-label {
+        font-size: smaller;
+        font-weight: bold;
+    }
+
+    #roster-filters {
+        > div {
+            display: inline-block;
+        }
+    }
+
+    #roster-search-group {
+        .form-group {
+            > div {
+                @include display-flex;
+                @include flex-direction(row);
+
+                > input {
+                    margin: 0;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    .form-group {
+        @media #{$nonPhone} {
+            @include display-flex;
+            @include flex-direction(row);
+            @include align-items(center);
+        }
+    }
+
+    #roster_type_selector {
+        .official-label {
+            @extend label;
+        }
+    }
+
+    .switch-button {
+        height: 26px;
+        width: 45px;
+        border: 1px solid #CCCCCC;
+        border-radius: 13px;
+        background-color: #DADADA;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+
+        &::after {
+            content: " ";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            background-color: #FFFFFF;
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,0.45);
+            border-radius: 10px;
+            top: 2px;
+            left: 2px;
+        }
+
+        &.on {
+            border-color: #275779 !important;
+            background-color: #3675a1 !important;
+
+            &::after {
+                left: initial;
+                right: 2px;
+            }
+        }
+    }
+
+    @media #{$phone} {
+        .roster-table-header-group {
+            display: none !important;
+        }
+
+        .roster-mobile-label {
+            display: inline-block !important;
+        }
+
+        .roster-table-row {
+            display: block !important;
+            border: 1px solid #ccc;
+            border-width: 1px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            padding: 5px;
+            margin-bottom: 5px;
+            max-width: 400px;
+
+            .roster-table-cell {
+                display: block !important;
+                max-width: 400px;
+
+                .roster-picture {
+                    width: 160px !important;
+                    height: 160px !important;
+                    border-radius: 80px !important;
+                }
+            }
+            .roster-name-cell {
+                max-width: 250px !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,486 @@
+.drive-body .scroll-container {
+    overflow-y: auto;
+}
+
+.drive-body .file-list {
+    list-style: none;
+}
+
+.drive-body .file-list label {
+    display: block;
+    padding: 4px;
+    margin: 0;
+    border-bottom: 1px solid #FFFFFF;
+}
+.drive-body .file-list tr:hover {
+    background-color: #FAFAFA;
+}
+
+.drive-body .file-list tr.active td {
+    background-color: #EEFAFF;
+}
+
+.drive-body .search-bar {
+    text-align: right;
+    float: right;
+    padding: 5px;
+}
+.drive-body .search-bar input {
+    padding: 2px 8px;
+    border: 1px solid #CCC;
+    font-size: 12px;
+    height: 27px;
+    border-radius: 4px;
+}
+
+.drive-body .list-overlay {
+    display: none;
+    z-index: 50;
+    background-color: #333;
+    opacity: 0.6;
+}
+
+.drive-body .form-buttons {
+    background-color: #efefef;
+    margin-top: 20px;
+}
+
+
+.drive-file:before,
+.drive-folder:before {
+  font-family: 'FontAwesome';
+  content: '\f128';
+  color: #777;
+  width: 20px;
+  display: inline-block;
+}
+.drive-folder:before {
+  content: '\f07b';
+}
+.drive-file.text:before,
+.drive-file.content:before {
+  content: '\f0f6';
+}
+.drive-file.image:before,
+.drive-file.photoshop:before {
+  content: '\f1c5';
+}
+.drive-file.citation:before {
+  content: '\f03a';
+}
+.drive-file.pdf:before {
+  content: '\f1c1';
+}
+.drive-file.compressed:before {
+  content: '\f1c6';
+}
+.drive-file.excel:before {
+  content: '\f1c3';
+}
+.drive-file.word:before {
+  content: '\f1c2';
+}
+.drive-file.ppt:before {
+  content: '\f1c4';
+}
+.drive-file.video:before {
+  content: '\f1c8';
+}
+.drive-file.generic:before,
+.drive-file.binary:before {
+  content: '\f016';
+}
+.drive-file.html:before,
+.drive-file.code:before {
+  content: '\f1c9';
+}
+.drive-file.audio:before,
+.drive-file.real:before {
+  content: '\f1c7';
+}
+.drive-file.broken:before {
+  content: '\f016';
+}
+.drive-file.java:before {
+  content: '\f1c9';
+}
+.drive-file.binhex:before {
+  content: '\f016';
+}
+.drive-file.access:before {
+  content: '\f1c0';
+}
+.drive-file.postscript:before {
+  content: '\f1c1';
+}
+.drive-file.shockwave:before {
+  content: '\f0e7';
+}
+.drive-file.application:before {
+  content: '\f016';
+}
+.drive-file.application_form:before {
+  content: '\f298';
+}
+.drive-file.drive:before {
+  content: '\f1a0';
+}
+.drive-file.url:before {
+  content: '\f08e';
+}
+
+body.sakai-drive-preview-open {
+  overflow: hidden;
+}
+
+#sakai-drive-preview {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+#sakai-drive-preview .blockout {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10001;
+}
+#sakai-drive-preview iframe {
+  width: 90%;
+  margin: auto 5%;
+  z-index: 10002;
+  position: absolute;
+  border: none;
+  box-shadow: 1px 1px 10px #000;
+}
+
+#sakai-drive-preview .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  z-index: 10003;
+  padding: 1.5%;
+  text-decoration: none;
+  opacity: 0.7;
+}
+#sakai-drive-preview .close:before {
+  font-family: 'FontAwesome';
+  content: '\f00d';
+}
+
+.sakai-resources-breadcrumbs.breadcrumb,
+.sakai-resources-toolbar {
+  margin-bottom: 10px;
+}
+
+.sakai-resources-toolbar .btn {
+  margin-right: 5px !important;
+}
+
+.sakai-resources-table .last-modified {
+  white-space: nowrap;
+}
+
+.sakai-resources-table tr td {
+  transition: background-color 0.2s;
+}
+
+.sakai-resources-table tr.active td {
+  transition: background-color 0.2s;
+
+  background-color: #347EB2 !important;
+  color: white;
+}
+.sakai-resources-table tr.active td.name > div:before,
+.sakai-resources-table tr.active td.name a {
+  color: white;
+}
+.sakai-resources-table.trash .name .collection:after {
+  content: '/';
+  color: #999;
+  padding-left: 5px;
+}
+
+.sakai-resource-dropzone.sakai-resource-dropzone-active {
+  outline: 2px solid #347EB2;
+}
+.sakai-resource-drag-helper {
+    background-color: #347EB2;
+    padding: 8px;
+}
+.sakai-resource-drag-helper,
+.sakai-resource-drag-helper a,
+.sakai-resource-drag-helper div:before {
+    color: white !important;
+}
+
+#google-drive .tab-content {
+  overflow: hidden;
+}
+
+.google-drive-menu a {
+  text-decoration: none;
+  color: #777777 !important;
+}
+
+.google-drive-menu .nav .active, .google-drive-menu .nav .active a {
+  background-color: #e1f0fe !important;
+  color: #135bac !important;
+  font-weight: bold;
+}
+
+.google-drive-menu {
+  position: relative;
+}
+
+.google-drive-menu #resetGoogleOAuth {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.google-drive-select-item-form {
+  clear: both;
+}
+
+.google-drive-panel {
+  border-left: 1px solid #AAA;
+}
+
+.google-drive-footer {
+  border-top: 1px solid #AAA;
+  text-align: center;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+#google-drive .loading {
+  animation: spinner 1s linear infinite;
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  margin-top: -7px;
+  color: #999;
+}
+
+.sakai-resources-tree {
+  overflow: hidden;
+}
+.sakai-resources-tree, .sakai-resources-tree ul {
+  padding: 0;
+  list-style: none;
+}
+.sakai-resources-tree ul {
+  border-left: 1px solid #DDD;
+  padding-left: 9px;
+  margin-left: 6px;
+}
+.sakai-resources-tree li {
+  white-space: nowrap;
+}
+.sakai-resources-tree li.active > .drive-folder {
+  font-weight: bold;
+}
+.sakai-resources-tree .drive-folder:before {
+  display: none;
+}
+.sakai-resources-tree .drive-folder-toggle {
+  position: relative;
+}
+.sakai-resources-tree .drive-folder-toggle:before {
+  font-family: 'FontAwesome';
+  content: '\f07b';
+  color: #777;
+  width: 20px;
+  display: inline-block;
+}
+.sakai-resources-tree li.has-children > .drive-folder > .drive-folder-toggle:after {
+  font-family: 'FontAwesome';
+  content: '\f067';
+  color: #FFF;
+  text-decoration: none;
+  position: absolute;
+  font-size: 6px;
+  left: 4px;
+  top: 5px;
+  text-shadow: 0px 0px 1px #333;
+}
+.sakai-resources-tree .expanded > .drive-folder > .drive-folder-toggle:before {
+  content: '\f07c';
+}
+.sakai-resources-tree .expanded.has-children > .drive-folder > .drive-folder-toggle:after {
+  display: none;
+}
+.sakai-resources-tree ul {
+  display: none;
+}
+.sakai-resources-tree .expanded > ul {
+  display: block;
+}
+.sakai-drive-menu {
+  padding: 0;
+  list-style: none;
+}
+.sakai-drive-menu .sakai-drive-menu-item.active > a {
+  font-weight: bold;
+}
+.sakai-drive-menu .sakai-drive-menu-item a {
+  text-decoration: none;
+}
+.sakai-drive-menu .sakai-drive-menu-item a i.fa {
+  color: #777;
+}
+.sakai-drive-menu .sakai-drive-menu-item a .sakai-drive-menu-item-text {
+  text-decoration: underline;
+}
+
+.google-drive-dialog {
+  padding: 0;
+}
+
+.google-drive-dialog .ui-dialog-titlebar {
+  display: none;
+}
+
+.google-drive-dialog .google-dialog-header {
+  line-height: 40px;
+  height: 40px;
+  background-color: #EEE;
+  border-bottom: 1px solid #DDD;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.google-drive-dialog .google-dialog-content {
+  overflow: auto;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.google-drive-dialog .google-dialog-header h3 {
+  padding: 0;
+  margin: 0;
+  line-height: 40px;
+}
+
+.google-drive-dialog .google-dialog-header .close-google-dialog {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  margin: 0;
+}
+
+#returnToDrive {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  margin: 0;
+}
+
+.create-google-item-form label {
+  font-weight: bold;
+}
+
+.create-google-item-form label::before {
+  content: '* ';
+}
+
+.sakai-google-group-category {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sakai-google-group-category .sakai-google-group-category-title {
+  font-weight: bold;
+  border-bottom: 1px solid #EEE;
+  margin-bottom: 10px;
+}
+
+.sakai-google-group-category ul,
+.sakai-google-group-category li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sakai-google-group-category li > label {
+  margin: 0;
+}
+
+.sakai-google-group-category li > label > input {
+  margin-right: 6px;
+}
+
+.sakai-google-group-category li > div {
+  margin-left: 30px;
+}
+
+a.sakai-google-drive-readonly-item, .sakai-google-drive-readonly-item {
+    font-style:italic;
+    color: #999 !important;
+}
+
+.sakai-google-group-selector {
+    border: 1px solid #cccccc;
+    width: 72.4%;
+    margin-left: 15px;
+}
+
+.sakai-google-file-icon{
+    position: relative;
+    margin-right: 15px;
+}
+
+.sakai-google-file-icon::before{
+    content: ' ';
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: -3px;
+}
+
+/*CLASSES-3703 - Add Resources MIME types for all Google Drive item types. Include more icons to support more mimetypes. */
+.application-vnd-google-apps-document::before {
+    background-image: url('https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document');
+}
+
+.application-vnd-google-apps-spreadsheet::before {
+    background-image: url('https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.spreadsheet');
+}
+.application-pdf::before {
+    background-image: url('https://drive-thirdparty.googleusercontent.com/16/type/application/pdf');
+}
+.application-vnd-google-apps-site::before {
+    background-image: url('https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.site');
+}
+
+.application-vnd-google-apps-map::before {
+    background-image: url('https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.map');
+}
+
+.application-vnd-google-apps-presentation::before {
+    background-image: url('https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.presentation');
+}
+
+.application-vnd-google-apps-form::before {
+    background-image: url('https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.form');
+}
+
+.application-vnd-google-apps-folder::before {
+    background-image: url('https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.folder');
+}
+
+.video-quicktime::before {
+    background-image: url('https://drive-thirdparty.googleusercontent.com/16/type/video/quicktime');
+}
+

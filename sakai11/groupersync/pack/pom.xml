@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <name>Grouper synchronization pack</name>
+    <groupId>edu.nyu.classes.groupersync</groupId>
+    <artifactId>groupersync-pack</artifactId>
+
+    <packaging>sakai-component</packaging>
+    <properties>
+        <deploy.target>components</deploy.target>
+    </properties>
+
+    <parent>
+        <groupId>edu.nyu.classes.groupersync</groupId>
+        <artifactId>groupersync-base</artifactId>
+        <version>0.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>edu.nyu.classes.groupersync</groupId>
+            <artifactId>groupersync-scheduler-jobs</artifactId>
+            <scope>provided</scope>
+            <version>0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.nyu.classes.groupersync</groupId>
+            <artifactId>groupersync-impl</artifactId>
+            <version>0.1</version>
+        </dependency>
+    </dependencies>
+
+    <build/>
+
+</project>

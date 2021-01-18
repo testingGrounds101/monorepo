@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<registration>
+	<tool id="widget.my.connections"
+    	title="My Connections"
+        description="A widget that shows a user's connections">
+    	
+    	<!--<category name="myworkspace" /> -->
+		
+		<!-- <configuration name="reset.button" value="true" type="final" /> -->
+
+	</tool>
+</registration>

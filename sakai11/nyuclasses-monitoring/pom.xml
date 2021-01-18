@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>NYUClasses Monitoring Thread</name>
+  <groupId>edu.nyu.classes.monitoring</groupId>
+  <artifactId>monitoring-base</artifactId>
+  
+  <packaging>pom</packaging>
+  
+  <parent>
+    <artifactId>master</artifactId>
+    <groupId>org.sakaiproject</groupId>
+    <version>12.5</version>
+    <relativePath>../master/pom.xml</relativePath>
+  </parent>
+
+  <modules>
+    <module>monitoring-impl/impl</module>
+    <module>monitoring-impl/pack</module>
+  </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-kernel-api</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>

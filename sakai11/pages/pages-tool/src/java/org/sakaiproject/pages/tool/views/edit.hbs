@@ -1,0 +1,17 @@
+<div class="sakai-pages">
+  <form action="{{{baseURL}}}save" method="post">
+    <div class="form-group">
+      <label for="title">{{{t this "title"}}}</label>
+      <input type="text" class="form-control" id="title" name="title" required value="{{{page.title}}}">
+    </div>
+    <div class="form-group">
+      <label for="sakai-pages-page-content">{{{t this "content"}}}</label>
+      <textarea id="sakai-pages-page-content" name="content" required>{{{page.content}}}</textarea>
+      <script>sakai.editor.launch('sakai-pages-page-content');</script>
+    </div>
+    <div>
+      <input type="submit" value="{{{t this "save"}}}">
+      <a href="{{{baseURL}}}">{{{t this "cancel"}}}</a>
+    </div>
+  </form>
+</div>

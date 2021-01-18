@@ -1,0 +1,46 @@
+' java -jar plantuml.jar 02_scorm_job_processing_run.uml
+
+@startuml
+
+title Student accesses a SCORM module
+
+actor Student
+
+Student -> Lessons : Access SCORM page
+
+Lessons -> ScormService : getLaunchURL(siteId, lessonPageId, userId)
+
+ScormService -> Database : findCourseId(siteId, lessonPageId)
+
+Database -> ScormService : courseId
+
+ScormService -> Database : findExistingRegistration(courseId, userId)
+
+alt Student isn't registered yet
+
+ScormService -> ScormService : generateId()
+
+ScormService -> ScormAPI : createRegistration(registrationId, courseId, userId)
+
+ScormAPI -> ScormService : OK
+
+ScormService -> Database : storeRegistration(registrationId, courseId, userId)
+
+Database -> ScormService : OK
+
+ScormService -> Database : findExistingRegistration(courseId, userId)
+
+end
+
+Database -> ScormService : <registrationId>
+
+ScormService -> ScormAPI : getLaunchUrl(registrationId)
+
+ScormAPI -> ScormService : <URL>
+
+ScormService -> Lessons : <URL>
+
+Lessons -> Student : Redirect: <URL>
+
+
+@enduml

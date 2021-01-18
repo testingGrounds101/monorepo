@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <bean id="edu.nyu.classes.jobs.NYUClassesEmailChangeNotifier"
+	class="edu.nyu.classes.jobs.NYUClassesEmailChangeNotifier"
+        init-method="init"
+        destroy-method="destroy">
+  </bean>
+
+  <bean id="edu.nyu.classes.jobs.TesolFriendMaker"
+	class="edu.nyu.classes.jobs.TesolFriendMaker"
+        init-method="init"
+        destroy-method="destroy">
+  </bean>
+</beans>

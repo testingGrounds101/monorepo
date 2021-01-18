@@ -1,0 +1,16 @@
+<div class="sakai-pages">
+  {{{subpage this "toolbar"}}}
+
+  {{#if canEdit}}
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <img src="/pages-tool/images/placeholder.png" style="max-width: 450px;">
+      </div>
+      <div class="col-sm-12 text-center">
+        <p>{{{t this "no_content_instructor"}}}</p>
+      </div>
+    </div>
+  {{else}}
+    <p>{{{t this "no_content_student"}}}</p>
+  {{/if}}
+</div>

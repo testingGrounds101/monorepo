@@ -1,0 +1,60 @@
+## $Header: /cvs/sakai2/legacy/tools/src/webapp/vm/admin/chef_realms_edit_role.vm,v 1.2 2005/05/24 20:22:20 gsilver.umich.edu Exp $
+
+<script type="text/javascript" language="JavaScript">
+  focus_path = ["id"];
+</script>
+<div class="portletBody">
+	
+	<h3>
+		$tlang.getString("realm.role.view")
+	</h3>
+	<p class="instruction">	
+		$tlang.getString("realm.view.view")
+		$validator.escapeHtml($!realm.Id)
+	</p>
+	<p class="instruction">
+		$tlang.getString("realm.role.used")
+		</p>
+		<p class="instruction">
+		$validator.escapeHtml($!realm.Description)
+	</p>
+	<h4>
+		$tlang.getString("realm.role.role")
+	</h4>
+	<p class="shorttext">
+		<label #if(!$role) for="id" #end>
+			 $tlang.getString("realm.role.id")
+		</label>
+		$validator.escapeHtml($role.Id)
+	</p>
+	<p class="shorttext">
+		<label for="description">
+			$tlang.getString("realm.role.description")
+		</label>
+		$!role.Description
+	</p>
+	<p class="shorttext">
+		$tlang.getString("realm.role.group.view")
+		#if($role.providerOnly) 
+			$tlang.getString("gen.yes")
+		#else
+			$tlang.getString("gen.no")
+		#end
+	</p>
+
+	<h4>
+		$tlang.getString("realm.role.functions")
+	</h4>	
+	#foreach ($lock in $allLocks)
+		<p class="checkbox"><input type="checkbox" name="locks" id="lock$velocityCount" value="$lock" #if($role.AllowedFunctions.contains($lock))checked="checked"#end disabled="disabled" />
+		<label for="lock$velocityCount">$lock</label></p> 
+	#end
+	
+	<form action="#toolForm("$action")" method="post">
+		<div class="act">
+			<input type="submit" name="eventSubmit_doCancel" value="$tlang.getString("gen.back")" accesskey="x" />
+		</div>
+		<input type="hidden" name="sakai_csrf_token" value="$sakai_csrf_token" />
+	</form>
+</div>
+

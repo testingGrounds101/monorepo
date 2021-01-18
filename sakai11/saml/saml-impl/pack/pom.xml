@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>saml-base</artifactId>
+    <groupId>edu.nyu.classes.saml</groupId>
+    <version>12.5</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <name>saml-pack</name>
+  <groupId>edu.nyu.classes.saml</groupId>
+  <artifactId>saml-pack</artifactId>
+  <packaging>sakai-component</packaging>
+  <properties>
+    <deploy.target>components</deploy.target>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>edu.nyu.classes.saml</groupId>
+      <artifactId>saml-impl</artifactId>
+      <version>12.5</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <resources/>
+  </build>
+</project>

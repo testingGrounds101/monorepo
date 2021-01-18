@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+
+<registration>
+	<tool
+	    id="sakai.iframe.qualtrics"
+	    title="Course Feedback"
+	    description="Course Feedback">
+		<configuration name="popup" value="false" />
+		<category name="course" />
+		<category name="project" />
+
+
+
+	</tool>
+
+
+	<tool
+	    id="nyu.ls-global-image-gallery"
+	    title="Global Image Gallery"
+	    description="Global Image Gallery">
+	  <configuration name="popup" value="false" />
+	  <configuration name="sakai.properties.url.key" value="nyu.ls-global-image-gallery.url" />
+
+	  <category name="course" />
+	  <category name="project" />
+	</tool>
+
+	<tool id="nyu.expos-digital-anthology"
+	      title="Digital Anthology"
+	      description="Digital Anthology">
+	  <configuration name="popup" value="false" />
+	  <configuration name="sakai.properties.url.key" value="nyu.expos-digital-anthology.url" />
+	</tool>
+
+	<tool id="nyu.learning.analytics"
+	      title="NYU Learning Analytics"
+	      description="NYU Learning Analytics">
+	  <configuration name="popup" value="false" />
+	  <configuration name="sakai.properties.url.key" value="nyu.learning.analytics.url" />
+	</tool>
+
+
+	<tool
+			id="sakai.iframe"
+			title="Web Content"
+			description="For accessing internal resources or an external website within the site.">
+
+		<configuration name="source" value="" />
+		<configuration name="height" value="600px" />
+
+		<configuration name="reset.button" value="true"/>
+
+		<category name="course" />
+		<category name="project" />
+        <category name="portfolio" />
+		<category name="myworkspace" />
+
+		<!-- Allow this to be set -->
+		<configuration name="functions.require" /> 
+		
+		<!-- Allow multiple instances of this tool within one site -->
+		<configuration name="allowMultipleInstances" value="true" /> 
+
+        <!-- Event for accessing the sakai.iframe.annotatedurl tool; remove property to remove logging of event -->
+        <configuration name="webcontent.read" value="webcontent.read" />
+
+        <!-- Event for modifying the sakai.iframe.annotatedurl tool configuration; remove property to remove logging of event -->
+        <configuration name="webcontent.revise" value="webcontent.revise" />
+
+		
+	</tool>
+
+
+	<tool
+			id="sakai.iframe.service"
+			title="Service Information Display"
+			description="For displaying information about this Service.">
+
+		<configuration name="height" value="600px" />
+
+		<configuration name="special" value="site" type="final" />
+		<configuration name="reset.button" value="false" type="final" />
+
+		<!-- Allow this to be set -->
+		<configuration name="functions.require" /> 
+        <!-- Event for accessing the sakai.iframe.annotatedurl tool; remove property to remove logging of event -->
+        <configuration name="webcontent.read" value="webcontent.service.read" />
+
+        <!-- Event for modifying the sakai.iframe.annotatedurl tool configuration; remove property to remove logging of event -->
+        <configuration name="webcontent.revise" value="webcontent.service.revise" />
+
+	</tool>
+
+	<tool
+			id="sakai.iframe.myworkspace"
+			title="Home Information Display"
+			description="For displaying information about a user's Home.">
+
+		<configuration name="height" value="600px" />
+
+		<configuration name="special" value="workspace" type="final" />
+		<configuration name="reset.button" value="false" type="final" />
+
+		<!-- Allow this to be set -->
+		<configuration name="functions.require" /> 
+
+        <!-- Event for accessing the sakai.iframe.annotatedurl tool; remove property to remove logging of event -->
+        <configuration name="webcontent.read" value="webcontent.myworkspace.read" />
+
+        <!-- Event for modifying the sakai.iframe.annotatedurl tool configuration; remove property to remove logging of event -->
+        <configuration name="webcontent.revise" value="webcontent.myworkspace.revise" />
+
+
+	</tool>
+
+    <tool
+            id="sakai.iframe.site"
+            title="Welcome"
+            description="For displaying Site information.">
+
+        <configuration name="height" value="400px" />
+
+        <configuration name="special" value="worksite" type="final" />
+        <configuration name="reset.button" value="false" type="final" />
+
+        <!-- Allow this to be set -->
+        <configuration name="functions.require" />
+
+        <!-- Event for accessing the sakai.iframe.annotatedurl tool; remove property to remove logging of event -->
+        <configuration name="webcontent.read" value="webcontent.site.read" />
+
+        <!-- Event for modifying the sakai.iframe.annotatedurl tool configuration; remove property to remove logging of event -->
+        <configuration name="webcontent.revise" value="webcontent.site.revise" />
+
+    </tool>
+
+
+    <tool id="nyu.libraries"
+          title="NYU Libraries"
+          description="For embedding NYU Libraries Resources within the site.">
+
+      <!-- CLASSES-2220 Note that this entry isn't marked "special".
+           This means that users can override the URL on a per-tool
+           basis. -->
+
+      <configuration name="sakai.properties.url.key" value="nyu.libraries.url" />
+      <configuration name="height" value="800px" />
+      <configuration name="reset.button" value="false" type="final" />
+      <configuration name="hide.options" value="false" />
+      <configuration name="custom" value="true" />
+      <configuration name="popup" value="false" />
+
+      <category name="course" />
+      <category name="project" />
+      <category name="portfolio" />
+      <category name="myworkspace" />
+
+      <!-- Allow this to be set -->
+      <configuration name="functions.require" /> 
+
+    </tool>
+
+
+    <tool id="nyu.ls-music-resources"
+          title="LS Music Resources"
+          description="LS Music Resources">
+
+      <!-- CLASSES-2220 Note that this entry isn't marked "special".
+           This means that users can override the URL on a per-tool
+           basis. -->
+
+      <configuration name="sakai.properties.url.key" value="nyu.ls-music-resources.url" />
+      <configuration name="height" value="800px" />
+      <configuration name="reset.button" value="false" type="final" />
+      <configuration name="hide.options" value="false" />
+      <configuration name="custom" value="true" />
+
+      <!-- We do want this site to load in a new window, butwe set
+           this to false because the X-Frame-Options delivered
+           by Google Sites will force the code to create a popup
+           anyway... -->
+      <configuration name="popup" value="false" />
+
+      <category name="course" />
+      <category name="project" />
+      <category name="portfolio" />
+      <category name="myworkspace" />
+
+      <!-- Allow this to be set -->
+      <configuration name="functions.require" /> 
+
+    </tool>
+
+    <tool id="nyu.briteclass"
+          title="BriteClass"
+          description="Lecture capture tool. Note: Recordings are only available for courses that meet in a lecture capture space or classroom.">
+
+      <configuration name="sakai.properties.url.key" value="nyu.briteclass.url" />
+      <configuration name="height" value="800px" />
+      <configuration name="reset.button" value="false" type="final" />
+      <configuration name="hide.options" value="false" />
+      <configuration name="custom" value="true" />
+
+      <configuration name="popup" value="false" />
+
+      <category name="course" />
+      <category name="project" />
+      <category name="portfolio" />
+      <category name="myworkspace" />
+
+      <!-- Allow this to be set -->
+      <configuration name="functions.require" /> 
+
+    </tool>
+
+    <tool id="nyu.connect"
+	  title="NYU Connect"
+	  description="NYU Connect">
+      <configuration name="sakai.properties.url.key" value="nyu.connect.url" />
+      <category name="myworkspace" />
+    </tool>
+
+	<tool
+	id="stern.zoom.guide"
+	title="Zoom Guide"
+	description="Zoom Guide">
+		<configuration name="popup" value="false" />
+		<configuration name="sakai.properties.url.key" value="stern.zoom.guide.url" />
+		<configuration name="height" value="700px" />
+		<category name="course" />
+		<category name="project" />
+	</tool>
+
+	<tool
+	id="nyu.academic.integrity"
+	title="Academic Integrity"
+	description="Academic Integrity">
+		<configuration name="popup" value="false" />
+		<configuration name="sakai.properties.url.key" value="nyu.academic.integrity.url" />
+		<configuration name="height" value="700px" />
+		<category name="course" />
+		<category name="project" />
+	</tool>
+
+	<tool
+	id="nyu.google.meet"
+	title="Google Meet"
+	description="Google Meet">
+		<configuration name="popup" value="false" />
+		<configuration name="sakai.properties.url.key" value="nyu.google.meet.url" />
+		<configuration name="height" value="700px" />
+		<category name="course" />
+		<category name="project" />
+	</tool>
+
+	<tool
+	    id="nyu.testing.options"
+	    title="Testing Options"
+	    description="Provides information on assessment options for your course, visible only to Instructors and Teaching Assistants.">
+	  <configuration name="popup" value="false" />
+	  <configuration name="sakai.properties.url.key" value="nyu.testing.options.url" />
+	  <configuration name="height" value="700px" />
+	  <category name="course" />
+	  <category name="project" />
+	  <configuration name="functions.require" value="site.upd" />
+	</tool>
+
+
+</registration>

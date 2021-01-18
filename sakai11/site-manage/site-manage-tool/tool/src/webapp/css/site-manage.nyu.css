@@ -1,0 +1,142 @@
+#findCoursePanels {
+    width: 600px;
+}
+.collapsible-panel {
+    clear: both;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.collapsible-panel .collapsible-panel-header {
+    cursor: pointer;
+    margin: 0;
+    padding: 10px 10px 10px 30px;
+    background-image: url(/library/image/sakai/expand.gif);
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    display: block;
+}
+.collapsible-panel .collapsible-panel-header:hover {
+    background-color: #dfdfdf;
+    border-radius: 5px;
+}
+.collapsible-panel.expanded .collapsible-panel-header {
+    background-image: url(/library/image/sakai/collapse.gif);
+    border-bottom: 1px dotted #CCC;
+}
+.collapsible-panel.expanded .collapsible-panel-header:hover {
+    border-radius: 5px 5px 0 0;
+}
+.collapsible-panel .collapsible-panel-content {
+    padding: 10px;
+}
+.collapsible-panel.expanded .collapsible-panel-content {
+    display: block;
+}
+.collapsible-panel.collapsed .collapsible-panel-content {
+    display: none;
+}
+.collapsible-panel,
+.form-panel {
+    background-color: #EEE;
+    box-shadow: 1px 1px 3px #666;
+    background-image: -webkit-linear-gradient(#EEE, #DDD);
+    background-image: -moz-linear-gradient(#EEE, #DDD);
+    background-image: -o-linear-gradient(#EEE, #DDD);
+    background-image: linear-gradient(#EEE, #DDD);
+}
+.collapsible-panel.active {
+    background-color: #eaf2ea;
+    background-image: -webkit-linear-gradient(#eaf2ea, #d5e5d6);
+    background-image: -moz-linear-gradient(#eaf2ea, #d5e5d6);
+    background-image: -o-linear-gradient(#eaf2ea, #d5e5d6);
+    background-image: linear-gradient(#eaf2ea, #d5e5d6);
+}
+.collapsible-panel.active .collapsible-panel-header:hover {
+    background-color: #d5e5d6;
+}
+#findCoursePanels ul {
+    margin: 0;
+    padding: 0;
+}
+#findCoursePanels li {
+    list-style: none;
+}
+#findCoursePanels ul.cross-listed-sections {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #CCC; 
+}
+#findCoursePanels li:last-child ul.cross-listed-sections {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+#findCoursePanels li label {
+    line-height: 16px;
+    display: inline;
+}
+#short_description {
+    width: 100%;
+    max-width: 694px;
+}
+#removeClassForm .eid,
+.attachList .eid,
+#findCoursePanels label .eid,
+.itemSummary .eid,
+#multipleSectionsWarningDialog .eid {
+    color: #999 !important;
+    margin-left: 10px !important;
+    font-size: 0.9em !important;
+}
+.section-attached-icon {
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-right: 5px;
+    background-image: url(/library/image/silk/tick.png);
+    background-repeat: no-repeat;
+}
+.site-already-linked-msg {
+    display: block;
+    margin: 0 0 0 21px;
+    font-size: 0.9em;
+    color: #172 !important;
+    text-shadow: 0px 1px 1px #FFF;
+}
+#submitnotif.toolbar-action {
+  margin-top: 10px;
+  display: inline-block;
+}
+#courseSiteTitle {
+  padding: 5px;
+  font-size: 1em;
+}
+.course-title-inline-form th,
+.course-title-inline-form td {
+    height: 40px;
+    vertical-align: middle !important;
+}
+#courseConfirmSubmitMessage .alertMessage {
+  border: none;
+  line-height: 16px;
+  margin-top: 0;
+}
+#multipleSectionsWarningDialog .course-listing {
+  max-height: 120px;
+  overflow: auto;
+}
+
+.site-setup-messages {
+  font-size: 1.1em
+}
+
+table#membership td[headers="worksite"] {
+  width: 25%;
+}
+
+table#membership td[headers="sections"],
+table#membership td[headers="instructor"],
+table#membership td[headers="term"],
+table#membership td[headers="status"] {
+  width: 10%;
+}

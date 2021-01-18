@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>scormcloud-service-base</artifactId>
+        <groupId>org.sakaiproject.scormcloudservice</groupId>
+        <version>12.5</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <name>scormcloud-service-pack</name>
+    <groupId>org.sakaiproject.scormcloudservice</groupId>
+    <artifactId>scormcloud-service-job-pack</artifactId>
+    <packaging>sakai-component</packaging>
+    <properties>
+        <deploy.target>components</deploy.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.sakaiproject.scormcloudservice</groupId>
+            <artifactId>scormcloud-service-api</artifactId>
+            <version>12.5</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <resources/>
+    </build>
+</project>

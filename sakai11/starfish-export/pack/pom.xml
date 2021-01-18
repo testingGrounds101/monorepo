@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+	
+    <parent>
+        <groupId>org.sakaiproject.gradebook</groupId>
+        <artifactId>starfish-export</artifactId>
+        <version>1.0</version>
+    </parent>
+ 	
+    <name>Starfish Export :: Components</name>
+    <groupId>org.sakaiproject.gradebook</groupId>
+  	<artifactId>starfish-export-pack</artifactId>
+  	<version>1.0</version>
+    
+    <packaging>sakai-component</packaging>
+    <properties>
+        <deploy.target>components</deploy.target>
+    </properties>
+  
+  	<dependencies>
+        <dependency>
+            <groupId>org.sakaiproject.gradebook</groupId>
+            <artifactId>starfish-export-jobs</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build />
+
+</project>

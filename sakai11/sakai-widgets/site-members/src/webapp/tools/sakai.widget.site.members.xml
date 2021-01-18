@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<registration>
+	<tool id="sakai.widget.site.members"
+    	title="Site Members"
+        description="A widget that shows the members of the site">
+    	
+<!-- CLASSES-3472
+    	<category name="project" />
+    	<category name="course" /> -->
+		
+		<configuration name="reset.button" value="false" />
+		<configuration name="help.button" value="false" />
+		<configuration name="sakai:tool-directurl-enabled" value="false" />
+		
+		<configuration name="renderInline" value="true" />
+		<configuration name="suppressTitle" value="true" />
+
+	</tool>
+</registration>

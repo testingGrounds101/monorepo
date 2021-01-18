@@ -1,0 +1,140 @@
+<div class="profile-drawer nyu">
+    <div class="profile-drawer-header">
+        <a class="close" title="Close the Profile Drawer"><span class="fa-inverse fa fa-times"></span></a>
+
+        <div class="profile-drawer-pretty-background"></div>
+        <div class="profile-drawer-picture">
+            <span style="background-image:url(${pictureUrl})"></span>
+        </div>
+        <div class="profile-drawer-details">
+            <h2 class="profile-drawer-name">
+                ${displayName}
+                #if (${you})
+                     (You)
+                #end
+            </h2>
+            <div class="profile-connection-actions">
+                #if (${unconnected})
+                    <button class="profile-connect-button" data-currentUserId="${currentUserId}" data-connectionUserId="${connectionUserId}">
+                        Connect
+                    </button>
+                #elseif (${incoming})
+                    <button class="profile-accept-button" data-currentUserId="${currentUserId}" data-connectionUserId="${connectionUserId}">
+                        Accept Connection
+                    </button>
+                    <button class="profile-ignore-button" data-currentUserId="${currentUserId}" data-connectionUserId="${connectionUserId}">
+                        Ignore
+                    </button>
+                #elseif (${requested})
+                    Awaiting Reply
+                #elseif (${connected})
+                    <span class="label label-success">Connected</span>
+                #end
+            </div>
+        </div>
+    </div>
+    <div class="profile-drawer-content">
+        #if (${showBasicInfo})
+            <h3>Basic Information</h3>
+            <div class="row">
+                <div class="col-xs-4">Preferred Name</div>
+                <div class="col-xs-8">${preferredName}</div>
+            </div>
+            #if (${age})
+              <div class="row">
+                  <div class="col-xs-4">Age</div>
+                  <div class="col-xs-8">${age}</div>
+              </div>
+            #end
+        #end
+
+        #if (${showStaffInfo} || ${showStudentInfo})
+            <h3>Academic Information</h3>
+            #if (${showStaffInfo} && ${position})
+              <div class="row">
+                  <div class="col-xs-4">Position</div>
+                  <div class="col-xs-8">${position}</div>
+              </div>
+            #end
+            #if (${showStaffInfo} && ${department})
+              <div class="row">
+                  <div class="col-xs-4">Department</div>
+                  <div class="col-xs-8">${department}</div>
+              </div>
+            #end
+            #if (${showStudentInfo} && ${school})
+              <div class="row">
+                  <div class="col-xs-4">School</div>
+                  <div class="col-xs-8">${school}</div>
+              </div>
+            #end
+            #if (${showStudentInfo} && ${degree})
+              <div class="row">
+                  <div class="col-xs-4">Degree</div>
+                  <div class="col-xs-8">${degree}</div>
+              </div>
+            #end
+            #if (${showStudentInfo} && ${subjects})
+              <div class="row">
+                  <div class="col-xs-4">Subjects</div>
+                  <div class="col-xs-8">${subjects}</div>
+              </div>
+            #end
+        #end
+
+        #if (${showBiography})
+            <h3>Biography</h3>
+            #if (${personalSummary})
+                <div>Personal Summary</div>
+                ${personalSummary}
+            #end
+            #if (${staffProfile})
+                <div>Staff Profile</div>
+                ${staffProfile}
+            #end
+        #end
+
+        #if (${showContactInfo})
+            <h3>Contact Information</h3>
+            #if (${email})
+              <div class="row">
+                  <div class="col-xs-4">Email</div>
+                  <div class="col-xs-8">${email}</div>
+              </div>
+            #end
+            #if (${phoneNumbers})
+                #foreach ($phoneNumber in $phoneNumbers)
+                    <div class="row">
+                        <div class="col-xs-4">${phoneNumber.formatType()}</div>
+                        <div class="col-xs-8">${phoneNumber.getValue()}</div>
+                    </div>
+                #end
+            #end
+        #end
+
+        #if (${showSocialInfo})
+            <h3>Social Media</h3>
+            #if (${socialMediaAccounts})
+                #foreach ($socialMediaAccount in $socialMediaAccounts)
+                    <div class="row">
+                        <div class="col-xs-4">${socialMediaAccount.formatType()}</div>
+                        <div class="col-xs-8">${socialMediaAccount.getValue()}</div>
+                    </div>
+                #end
+            #end
+        #end
+    </div>
+    <div class="profile-drawer-footer">
+        <div>
+            <a class="gotoprofile" href="${profileUrl}">View in Profile Tool</a>
+        </div>
+        #if (${connected})
+            <hr>
+            <div>
+                <button class="profile-remove-connection-button" data-currentUserId="${currentUserId}" data-connectionUserId="${connectionUserId}">
+                    Remove Connection
+                </button>
+            </div>
+        #end
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<registration>
+    <tool id="sakai.groupersync"
+          title="Google Groups"
+          description="Create automatic Google Groups based off of entire site membership, specific sections, or individual site groups.">
+
+        <!--  This tool will be made available to the following site types via Site Info > Edit Tools -->
+        <category name="course"/>
+        <category name="project"/>
+
+        <configuration name="functions.require" value="site.upd"/>
+    </tool>
+</registration>
+

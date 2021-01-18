@@ -1,0 +1,28 @@
+' java -jar plantuml.jar 01_add_scorm_module.uml
+@startuml
+
+title Handling an uploaded SCORM module
+
+actor Instructor
+
+Instructor->Lessons : Add scorm.zip with title "MyTitle"
+
+Lessons->ContentService : createResource(scorm.zip)
+
+ContentService->Lessons : <resourceId>
+
+Lessons->Lessons : createPage("MyTitle")
+
+Lessons->Lessons : <lessonPageId>
+
+Lessons->ScormService : addCourse(siteId, lessonPageId, resourceId)
+
+ScormService->Database : addJob(siteId, lessonPageId, resourceId)
+
+Database->ScormService : OK
+
+ScormService->Lessons : OK
+
+Lessons->Instructor : OK
+
+@enduml

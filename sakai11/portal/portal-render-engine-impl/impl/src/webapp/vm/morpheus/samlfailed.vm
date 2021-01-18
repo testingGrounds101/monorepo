@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <link href="/portal/styles/portalstyles.css" type="text/css" rel="stylesheet" media="all" />
+    <!--[if gte IE 5]><![if lt IE 7]>
+    <link href="/portal/styles/portalstyles-ie5.css" type="text/css" rel="stylesheet" media="all" />
+    <![endif]><![endif]-->
+    <link href="${pageSkinRepo}/${pageSkin}/portal.css" type="text/css" rel="stylesheet" media="all" />
+
+    <title>${pageTitle}</title>
+    ${sakai_html_head_css}
+
+    <meta http-equiv="refresh" content="10; url=/portal/login?samlfailed=true">
+  </head>
+
+  <body class="portalBody">
+    <!-- start includeSiteNav -->
+    <div id="portalOuterContainer">
+      <div id="portalContainer">
+        <div id="headerMin">
+          <div id="siteNavWrapper" class="${logoSiteClass}">
+            <div id="mastHead">
+              <div id="mastLogo"></div>
+              <div id="mastBanner"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="content">
+          <h2>Single sign-on error</h2>
+
+          <p>We were unable to use your single sign-on session to log
+          you in to NYU Classes.</p>
+
+          <p>In a moment, you will be redirected to a form where you can
+          log in directly using
+            your <strong>NetID</strong>
+            and <strong>password</strong>.</p>
+
+          <p>Alternatively, <a href="/portal/login?samlfailed=true">click here to be redirected immediately.</a></p>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

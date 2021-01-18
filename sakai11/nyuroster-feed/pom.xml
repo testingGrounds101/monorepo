@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>master</artifactId>
+    <groupId>org.sakaiproject</groupId>
+    <version>12.5</version>
+    <relativePath>../master/pom.xml</relativePath>
+  </parent>
+  <name>NYURoster data feed</name>
+  <groupId>edu.nyu.classes.nyuroster</groupId>
+  <artifactId>nyuroster-feed-base</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>nyuroster-feed-app/app</module>
+  </modules>
+</project>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>attendance-jobs-impl</name>
+  <groupId>org.sakaiproject.attendance</groupId>
+  <artifactId>attendance-jobs-impl</artifactId>
+
+  <packaging>jar</packaging>
+
+  <parent>
+    <artifactId>attendance</artifactId>
+    <groupId>org.sakaiproject.attendance</groupId>
+    <relativePath>../../pom.xml</relativePath>
+    <version>20180412</version>
+  </parent>
+
+  <properties>
+    <deploy.target>shared</deploy.target>
+  </properties>
+
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.sakaiproject.scheduler</groupId>
+      <artifactId>scheduler-api</artifactId>
+    </dependency>
+
+    <!--  Sakai dependencies -->
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-kernel-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-kernel-util</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-component-manager</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.sakaiproject.attendance</groupId>
+      <artifactId>attendance-api</artifactId>
+    </dependency>
+
+  </dependencies>
+
+</project>

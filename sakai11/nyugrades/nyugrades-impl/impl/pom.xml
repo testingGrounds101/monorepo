@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>nyugrades-impl</name>
+  <groupId>edu.nyu.classes.nyugrades</groupId>
+  <artifactId>nyugrades-impl</artifactId>
+  
+  <packaging>jar</packaging>
+  
+  <parent>
+    <artifactId>nyugrades-base</artifactId>
+    <groupId>edu.nyu.classes.nyugrades</groupId>
+    <version>12.5</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <properties>
+    <deploy.target/>
+  </properties>
+
+
+  <dependencies>
+    
+    <!--  Sakai dependencies -->
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-kernel-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-kernel-util</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-component-manager</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject.edu-services.gradebook</groupId>
+      <artifactId>gradebook-service-api</artifactId>
+      <version>12.5</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.sakaiproject.edu-services.course-management</groupId>
+      <artifactId>coursemanagement-api</artifactId>
+      <version>12.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>edu.nyu.classes.nyugrades</groupId>
+      <artifactId>nyugrades-api</artifactId>
+      <version>12.5</version>
+    </dependency>
+
+  </dependencies>
+
+</project>

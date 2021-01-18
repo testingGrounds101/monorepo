@@ -1,0 +1,295 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="{{{skinRepo}}}/tool_base.css" />
+
+        {{{randomSakaiHeadStuff}}}
+    </head>
+    <body>
+        <script src="/telemetry/js/apexcharts.js"></script>
+        <script src="/telemetry/js/moment.min.js"></script>
+        <script src="/telemetry/js/moment-timezone-with-data.js"></script>
+
+        {{#lineCharts}}
+            <h2>{{name}}</h2>
+            <div id="{{name}}"></div>
+
+            <script>
+             var chart = new ApexCharts(document.querySelector('#{{name}}'), {
+                 chart: {
+                     type: 'line',
+                     width: 1280,
+                     height: 400,
+                     zoom: {
+                         enabled: true,
+                         type: 'xy',
+                     },
+                     animations: {
+                         enabled: false,
+                         dynamicAnimation: {
+                             enabled: false,
+                         }
+                     }
+                 },
+
+                 tooltip: {
+                     x: {
+                         show: false,
+                     },
+                 },
+
+                 markers: {
+                     size: 2,
+                     strokeWidth: 0,
+                     colors: '#0085ff',
+                 },
+
+                 xaxis: {
+                     type: 'datetime',
+                     labels: {
+                         formatter: function (value, timestamp) {
+                             return moment(new Date(timestamp)).tz('America/New_York').format('DD MMM');
+                         },
+                     },
+                     tooltip: {
+                         formatter: function (value, opts) {
+                             return moment(new Date(value)).tz('America/New_York').format('ddd, YYYY-MM-DD HH:mm');
+                         },
+                     },
+                 },
+
+                 yaxis: {
+                     min: 0,
+                 },
+
+
+                 series: [{
+                     name: '{{name}}',
+                     data: [
+                         {{#each readings}}
+                         [{{x}}, {{y}}],
+                         {{/each}}
+                     ],
+                 }],
+             });
+
+             chart.render();
+            </script>
+
+
+            {{#if this.showCountsByDay}}
+                <section id="{{this.name}}_counts_by_day_section">
+                    <h2>{{this.name}} - counts by day</h2>
+
+                    <div id="{{this.name}}_counts_by_day"></div>
+                </section>
+
+                <script>
+                 var chart = new ApexCharts(
+                     document.querySelector("#{{this.name}}_counts_by_day"),
+                     {
+                         chart: {
+                             width: 1280,
+                             height: 200,
+                             type: 'bar',
+                             animations: {
+                                 enabled: false,
+                                 dynamicAnimation: {
+                                     enabled: false,
+                                 }
+                             }
+                         },
+                         xaxis: {
+                             labels: {
+                                 rotate: -90,
+                             },
+                             categories: [
+                                 {{#each this.countsByDay}}
+                                 '{{@key}}',
+                                 {{/each}}
+                             ],
+                         },
+                         yaxis: {
+                             min: 0,
+                         },
+                         series: [
+                             {
+                                 name: 'count',
+                                 data: [
+                                     {{#each this.countsByDay}}
+                                     {{this}},
+                                     {{/each}}
+                                 ],
+                             },
+                         ],
+                     });
+
+                 chart.render();
+                </script>
+            {{/if}}
+
+        {{/lineCharts}}
+
+
+        {{#histogramCharts}}
+            <h2>{{this.name}}</h2>
+
+            <div id="{{this.name}}"></div>
+            <script>
+             (function () {
+                 var timeSliceTotals = [
+                     {{#each this.timeSliceTotals}}
+                       {{this}},
+                     {{/each}}
+                 ];
+
+                 var chart = new ApexCharts(
+                     document.querySelector("#{{this.name}}"),
+                     {
+                         chart: {
+                             width: 1280,
+                             height: 200,
+                             type: 'heatmap',
+                             animations: {
+                                 enabled: false,
+                                 dynamicAnimation: {
+                                     enabled: false,
+                                 }
+                             }
+                         },
+                         stroke: {
+                             width: 1,
+                             colors: ['#a8d7fb'],
+                         },
+
+                         dataLabels: {
+                             enabled: false
+                         },
+                         xaxis: {
+                             type: 'category',
+                             labels: {
+                                 show: false,
+                                 formatter: function (value, timestamp, index) {
+                                     return moment(new Date(value)).tz('America/New_York').format('ddd, YYYY-MM-DD HH:mm');
+                                 },
+                             },
+                             axisTicks: {
+                                 show: false,
+                             },
+                         },
+
+                         tooltip: {
+                             y: {
+                                 formatter: function (value, chart) {
+                                     var col = chart.dataPointIndex;
+
+                                     var formatNumber = function(n) {
+                                         if (n < 0) {
+                                             return "-" + formatNumber(n * -1);
+                                         } else if (n < 1000) {
+                                             return "" + n;
+                                         } else {
+                                             let s = "" + (n % 1000)
+                                             while (s.length < 3) {
+                                                 s = "0" + s;
+                                             }
+
+                                             return formatNumber(Math.floor(n / 1000)) + "," + s;
+                                         }
+
+                                         return result;
+                                     }
+
+                                     if (value == 0) {
+                                         return "0";
+                                     } else {
+                                         var estimatedObservations = Math.round((timeSliceTotals[col] || 0) * (value / 100.0));
+                                         return "" + value + "% (observations: " + formatNumber(estimatedObservations) + ")";
+                                     }
+                                 },
+                             },
+                         },
+
+                         colors: ["#008FFB"],
+                         series: [
+                             {{#each this.bucketsMap}}
+                             {
+                                 name: '{{@key}}',
+                                 data: [
+                                     {{#each this}}
+                                     {
+                                         x: {{this.time}},
+                                         y: {{this.count}},
+                                     },
+                                     {{/each}}
+                                 ],
+                             },
+                             {{/each}}
+                         ],
+                     });
+
+
+                 chart.render();
+
+             }());
+            </script>
+
+            {{#if this.showCountsByDay}}
+                <h2>{{this.name}} - counts by day</h2>
+
+                <div id="{{this.name}}_counts_by_day"></div>
+                <script>
+                 var chart = new ApexCharts(
+                     document.querySelector("#{{this.name}}_counts_by_day"),
+                     {
+                         chart: {
+                             width: 1280,
+                             height: 200,
+                             type: 'bar',
+                             animations: {
+                                 enabled: false,
+                                 dynamicAnimation: {
+                                     enabled: false,
+                                 }
+                             }
+                         },
+                         xaxis: {
+                             labels: {
+                                 rotate: -90,
+                             },
+                             categories: [
+                                 {{#each this.countsByDay}}
+                                 '{{@key}}',
+                                 {{/each}}
+                             ],
+                         },
+                         yaxis: {
+                             min: 0,
+                         },
+                         series: [
+                             {
+                                 name: 'count',
+                                 data: [
+                                     {{#each this.countsByDay}}
+                                     {{this}},
+                                     {{/each}}
+                                 ],
+                             },
+                         ],
+                     });
+
+
+                 chart.render();
+
+                </script>
+            {{/if}}
+
+
+        {{/histogramCharts}}
+
+
+        <script>includeLatestJQuery('layout.hbs');</script>
+
+    </body>
+</html>

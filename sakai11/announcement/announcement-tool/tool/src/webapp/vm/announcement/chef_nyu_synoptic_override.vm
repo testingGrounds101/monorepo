@@ -1,0 +1,17 @@
+<div class="portletBody container-fluid sakai-synoptic-announcements">
+  <div class="nyu-synoptic-announcements Mrphs-multipleTools">
+    <nav class="Mrphs-toolTitleNav Mrphs-container Mrphs-container--toolTitleNav">
+      <h2 class="Mrphs-toolTitleNav__title">Recent Announcements</h2>
+    </nav>
+    <div class="portletBody">
+      #if ($announcementToolURL)
+      <p style="padding: 15px 15px 0;">
+        <span class="icon-sakai--sakai-announcements"></span>&nbsp;
+        <a id="linkToAnnouncements" href="$!announcementToolURL" target="_top">Click here to view your announcements</a>
+      </p>
+      #else
+      <p>No announcements tool found.</p>
+      #end
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+' java -jar plantuml.jar 02_scorm_job_processing_run.uml
+
+@startuml
+
+title Processing pending SCORM jobs
+
+ScormImportSyncJob -> ScormService : runSyncRound()
+
+ScormService -> ScormCloudJobProcessor : run()
+
+ScormCloudJobProcessor -> Database : getPendingJobs()
+
+Database -> Database : <Find new jobs or failed jobs that can be retried>
+
+Database -> ScormCloudJobProcessor : <jobs>
+
+ScormCloudJobProcessor -> ThreadPool : create
+
+group For each job (concurrent)
+
+  ScormCloudJobProcessor -> ThreadPool : handleJob(<job>)
+
+  ThreadPool -> ContentService : getResource(job.resourceId)
+
+  ContentService -> ThreadPool : <file content>
+
+  ThreadPool -> ScormAPI : importCourse(job.id, <file content>)
+
+  ScormAPI -> ThreadPool : OK (or Error)
+
+  alt if importCourse succeeded
+
+    ThreadPool -> Database : markCompleted(job)
+
+    ThreadPool -> Database : createScormCourseFromJob(job)
+
+    Database -> ThreadPool : OK
+
+  else if importCourse failed
+
+    ThreadPool -> Database : markFailed(job)
+
+    Database -> Database : incrementFailureCount(job) 
+
+    Database -> Database : remove jobs that have hit max failure count
+
+  end
+
+end
+
+ScormCloudJobProcessor -> ThreadPool : Join
+
+ThreadPool -> ScormCloudJobProcessor : Done
+
+ScormCloudJobProcessor -> ScormService : Done
+
+ScormService -> ScormImportSyncJob : Done
+
+@enduml

@@ -1,0 +1,10 @@
+<li>
+    {{label}}
+    {{#if folder}}
+        <ul>
+            {{#each children}}
+                {{> org/sakaiproject/drive/tool/views/resource_item this}}
+            {{/each}}
+        </ul>
+    {{/if}}
+</li>

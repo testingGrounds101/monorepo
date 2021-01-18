@@ -1,0 +1,103 @@
+body {
+    /* Fix 0.9em font size causing super small text size! */
+    font-size: 1.2em !important;
+}
+
+.groupersync-body h2, .groupersync-body h3 {
+    font-weight: bold;
+}
+
+.groupersync-body h3 {
+    padding: 10px 0 10px 10px;
+    border-left: 3px solid #2F7FAB;
+    background-color: #eeeeee !important;
+    font-size: 1.2em;
+    box-shadow: inset 0 -1px 1px #DDD;
+}
+
+.groupersync-body .subtable {
+    max-width: 900px;
+    background-color: #fafafa;
+    margin: 2em 0 0 1em;
+    padding-bottom: 10px;
+    border: 1px solid #f1f1f1;
+}
+
+.groupersync-body .subtable h3 {
+    margin: 0 0 1em 0;
+}
+
+.groupersync-body .subtable table {
+    margin: 10px;
+    max-width: 880px;
+    background-color: white;
+}
+
+.groupersync-body .show-members-btn {
+    margin: 5px;
+}
+
+.modal-body .member-list {
+    list-style-type: none;
+}
+
+/* FIXME: Can probably use the bootstrap grid for this? */
+.modal-body {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.groupersync-body .group-container .form-control, .modal-body .form-control {
+    padding: 6px 12px;
+    height: 34px;
+}
+
+.groupersync-body .group-description {
+    margin-bottom: 0.5em;
+}
+
+.groupersync-body .last-sync-indicator {
+    margin-bottom: 1em;
+    color: #777;
+    display: none;
+}
+
+.groupersync-body .clipboard-help-text {
+    color: green;
+}
+
+.groupersync-body .group-pending-msg {
+    color: green;
+}
+
+.modal-body .member-list .member .name {
+    display: inline-block;
+    width: 15em;
+    margin-right: 2em;
+    overflow: hidden;
+}
+
+.modal-body .member-list .member .eid {
+    display: inline-block;
+    width: 6em;
+    margin-right: 2em;
+    overflow: hidden;
+}
+
+.modal-body .member-list .member .role {
+    display: inline-block;
+    width: 12em;
+    overflow: hidden;
+}
+
+.groupersync-body small.text-danger {
+    font-weight: bold;
+}
+
+.groupersync-body .roster-name {
+    color: #888;
+}
+
+.groupersync-body .address-action-btn {
+    line-height: 22px !important;
+}

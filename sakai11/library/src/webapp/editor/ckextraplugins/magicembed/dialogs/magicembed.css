@@ -1,0 +1,22 @@
+.cke_magicembed_form input, 
+.cke_magicembed_form textarea {
+    border: 1px solid rgb(185,185,185);
+    border-top-color: rgb(160,160,160);
+    box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);
+    display: block;
+    background-color: white;
+}
+
+.cke_magicembed_form textarea {
+    font-family: monospace;
+    height: 80px;
+}
+
+.cke_magicembed_form .warning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+    padding: 5px;
+    margin-bottom: 10px;
+    white-space: normal;
+}

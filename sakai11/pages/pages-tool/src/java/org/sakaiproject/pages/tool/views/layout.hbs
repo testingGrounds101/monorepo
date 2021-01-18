@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="{{{skinRepo}}}/tool_base.css" />
+        <link rel="stylesheet" type="text/css" href="/pages-tool/stylesheets/pages.css" />
+
+        {{{randomSakaiHeadStuff}}}
+    </head>
+    <body>
+
+        <div class="portletBody pages-body">
+            {{#if flash}}
+                {{#each flash}}
+                    <div class="alert alert-{{@key}}">
+                        <ul>
+                            {{#each this}}
+                                <li>{{{t null this}}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                {{/each}}
+            {{/if}}
+
+            {{#if errors}}
+                <div class="alert alert-danger">
+                    <ul>
+                        {{#each errors}}
+                            <li> {{this.field}} - {{{t null this.errorCode}}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            {{/if}}
+
+            {{{subpage this subpage}}}
+        </div>
+    </body>
+</html>

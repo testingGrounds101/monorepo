@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="edu.nyu.classes.nyugrades.api.DBService"
+			class="edu.nyu.classes.nyugrades.impl.DBServiceImpl"
+                        init-method="init"
+			>
+	</bean>
+
+	<bean id="edu.nyu.classes.nyugrades.api.NYUGradesSessionService"
+			class="edu.nyu.classes.nyugrades.impl.NYUGradesSessionServiceImpl"
+                        init-method="init"
+			>
+	</bean>
+
+	<bean id="edu.nyu.classes.nyugrades.api.NYUGradesService"
+			class="edu.nyu.classes.nyugrades.impl.NYUGradesServiceImpl"
+                        init-method="init"
+			>
+	</bean>
+
+</beans>

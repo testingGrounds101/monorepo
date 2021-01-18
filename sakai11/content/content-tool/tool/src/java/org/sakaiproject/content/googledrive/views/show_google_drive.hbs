@@ -1,0 +1,120 @@
+<div class="google-drive">
+  <div class="google-dialog-header">
+    <div class="text-center">
+      <h3>Add Google Drive Content</h3>
+    </div>
+    <button class="close-google-dialog" title="Cancel"><i class="fa fa-times"></i></button>
+  </div>
+
+  <div class="google-dialog-content">
+    <div class="row">
+      <div class="col-xs-2 google-drive-menu">
+        <button id="resetGoogleOAuth" class="btn btn-danger">Relink Google account</button>
+        <div>
+          <ul class="nav">
+            <li class="active"><a href="#googledriverecent" data-toggle="tab"><span class="fa fa-clock-o"></span> Most Recent</a></li>
+            <li><a href="#googledrivehome" data-toggle="tab"><span class="fa fa-google"></span> My Drive</a></li>
+            <li><a href="#googledrivestarred" data-toggle="tab"><span class="fa fa-star"></span> Starred</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xs-10 google-drive-panel">
+        <div class="tab-content">
+          <div id="googledriverecent" class="tab-pane active">
+            <div class="search-bar">
+              <input class="file-search" type="text" placeholder="Search Most Recent" value="" />
+            </div>
+            <ul class="breadcrumb">
+              <li class="active"><a href="#" data-id="root">Most Recent</a></li>
+            </ul>
+            <form class="google-drive-select-item-form" method="POST" action="{{googleDriveURL}}new-google-item">
+              <div class="error-messages alertMessage" style="display: none">
+              </div>
+              <input type="hidden" name="collectionId" value="{{collectionId}}"/>
+              <div class="scroll-container">
+                <table class="file-list table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Access</th>
+                            <th>Last Modified</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="no-matches-msg" style="display: none;">No files matched your query</div>
+              </div>
+            </form>
+          </div>
+          <div id="googledrivehome" class="tab-pane">
+            <div class="search-bar">
+              <input class="file-search" type="text" placeholder="Search My Drive" value="" />
+            </div>
+            <ul class="breadcrumb">
+              <li class="active"><a href="#" data-id="root">My Drive</a></li>
+            </ul>
+            <form class="google-drive-add-selected-form" method="POST" action="{{baseURL}}add-selected">
+              <div class="scroll-container">
+                <table class="file-list table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Access</th>
+                            <th>Last Modified</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="no-matches-msg" style="display: none;">No files matched your query</div>
+              </div>
+            </form>
+          </div>
+          <div id="googledrivestarred" class="tab-pane">
+            <div class="search-bar">
+              <input class="file-search" type="text" placeholder="Search Starred" value="" />
+            </div>
+            <ul class="breadcrumb">
+              <li class="active"><a href="#" data-id="root">Starred</a></li>
+            </ul>
+            <form class="google-drive-add-selected-form" method="POST" action="{{baseURL}}add-selected">
+              <div class="scroll-container">
+                <table class="file-list table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Access</th>
+                            <th>Last Modified</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="no-matches-msg" style="display: none;">No files matched your query</div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 google-drive-footer">
+          <button id="cancelSelectedGoogleItems" class="btn button">Cancel</button>
+          <button id="addSelectedGoogleItems" class="btn btn-primary disabled" disabled="disabled">Selected Drive Content</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="fileTemplate" type="text/template">
+    <tr {if readOnly} class="sakai-google-drive-readonly-item" {/if} >
+        <td><input type="checkbox" name="fileid" value="${id}"></td>
+        <td><img src="${iconLink}" /></td>
+        {if folder}
+            <td><a class="google-drive-folder {if readOnly} sakai-google-drive-readonly-item {/if}" href="#" data-id="${id}">${name}</a></td>
+        {else}
+            <td><a {if readOnly} class="sakai-google-drive-readonly-item" {/if} href="${viewLink}">${name}</a></td>
+        {/if}
+         <td>${accessType}</td>
+         <td class="modifiedDate">${modifiedTime}</td>
+    </tr>
+</script>

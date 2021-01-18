@@ -1,0 +1,86 @@
+	<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+	<parent>
+    	<artifactId>base</artifactId>
+    	<groupId>org.sakaiproject</groupId>
+    	<version>12.5</version>
+    	<relativePath>../pom.xml</relativePath>
+  	</parent>
+ 	
+    <name>NYU Classes :: Wiris CKeditor plugin deployer</name>
+    <groupId>edu.nyu.classes.wiris</groupId>
+  	<artifactId>wiris-deploy</artifactId>
+    
+    <packaging>pom</packaging>
+
+	<build>
+		<plugins>
+		
+			<!-- Run some preliminary checks and do some cleanups -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<!-- check deploy dir is set -->
+					<execution>
+						<id>check</id>
+						<phase>validate</phase>
+						<configuration>
+							<tasks>
+								<!-- Check environment -->
+								<fail message="'-Dmaven.tomcat.home=/path/to/tomcat' must be specified">
+									<condition>
+										<not>
+											<isset property="maven.tomcat.home" />
+										</not>
+									</condition>
+								</fail>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					
+					<!-- build war from precompiled src -->
+					<execution>
+						<id>build</id>
+						<phase>compile</phase>
+						<configuration>
+							<tasks>
+								<echo message="Building war" />
+								<war destfile="bin/pluginwiris_engine.war" webxml="src/WEB-INF/web.xml">
+									<fileset dir="src"/>
+								</war>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					
+					<!--  copy artifacts to tomcat -->
+					<execution>
+						<id>deploy</id>
+						<phase>install</phase>
+						<configuration>
+							<tasks>
+								
+              					<!-- webapps -->
+              					<echo message="Deploying war" />
+              					<copy file="bin/pluginwiris_engine.war" todir="${maven.tomcat.home}/webapps" />
+
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
+</project>

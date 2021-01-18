@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <name>seats-service</name>
+    <groupId>edu.nyu.classes.seats</groupId>
+    <artifactId>seats-service</artifactId>
+    <version>12.5</version>
+
+    <parent>
+        <artifactId>seats-base</artifactId>
+        <groupId>edu.nyu.classes.seats</groupId>
+        <version>12.5</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <packaging>sakai-component</packaging>
+    <properties>
+        <deploy.target>components</deploy.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.sakaiproject.kernel</groupId>
+            <artifactId>sakai-kernel-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>edu.nyu.classes.seats</groupId>
+            <artifactId>seats-api</artifactId>
+            <version>12.5</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <resources/>
+    </build>
+</project>

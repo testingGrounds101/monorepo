@@ -1,0 +1,29 @@
+<div class="profile-popup nyu">
+    <div class="profile-popup-top">
+        <div class="profile-popup-picture">
+            <span style="background-image:url(${pictureUrl})"></span>
+        </div>
+        <div class="profile-popup-details">
+            <div class="profile-popup-display-name">${displayName}</div>
+            <div class="profile-popup-display-eid">${eid}</div>
+            <div class="profile-popup-display-role">${role}</div>
+            <div class="profile-popup-display-section">${sections}</div>
+        </div>
+    </div>
+    <div class="profile-popup-bottom">
+        <div class="profile-popup-actions">
+            <ul>
+                <!-- Profile Link -->
+                <li>
+                    <a href="${profileUrl}" class="profile-link" data-useruuid="${connectionUserId}" data-siteid="${siteId}">
+                        <span class="fa fa-user"></span>
+                    </a>
+                </li>
+                <!-- Message -->
+                <li></li>
+                <!-- Chat -->
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>

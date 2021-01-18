@@ -1,0 +1,27 @@
+#nyuBrightspaceMigratorModal .modal-dialog {
+  max-width: 1200px;
+  width: 98%;
+}
+
+#nyuBrightspaceMigratorModal .modal-dialog .modal-body {
+  overflow: auto;
+}
+
+.nyu-trigger-brightspace-migration {
+  margin: 0 !important;
+  padding: 2px 10px !important;
+}
+
+.brightspace-migrator-state {
+  width: 100%;
+  margin: 0;
+}
+
+.brightspace-migrator-state .inactive {
+  background-color: transparent;
+  color: grey;
+}
+
+.brightspace-migrator-filter-query {
+  height: 28px !important;
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Existing permissions</h2>
+      <div class="limits">
+        <form id="limits_form">
+          <div class="limit">Search by Net ID <input id="limit_netid" type="text" class="input-small"></div>
+          <div class="limit">Search by Course ID <input id="limit_course" type="text" class="input-large"></div>
+          <div class="limit_apply"><button id="apply_limits" class="btn btn-mini">Search</button></div>
+        </form>
+      </div>
+      <table id="existing-user-display" class="table-striped">
+        <tr class="header"><th>Net ID</th><th>Course</th><th></th></tr>
+        <tr id="no-entries"><td colspan="3">No entries</td></tr>
+      </table>
+      <div class="pagination">
+        <button style="display: none;" class="btn btn-inverse btn-mini" id="previous-button">previous page</button>
+        <button style="display: none;" class="btn btn-inverse btn-mini" id="next-button">next page</button>
+      </div>
+
+      <form class="form-horizontal">
+
+        <div class="errors" id="error-pane"></div>
+
+        <h2>User selection</h2>
+
+        <div id="add-user-group" class="control-group">
+          <label class="control-label" for="add_user">Add a user</label>
+          <div class="controls">
+            <input id="add_user" type="text" class="input-small"
+                   placeholder="Net ID"/>
+            <button id="add_user_btn" class="btn">Add</button>
+            <span style="display: none" id="user-not-found" class="help-inline">User not found<span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div id="user-display" class="user-display">
+          </div>
+        </div>
+
+
+        <h2>Course selection</h2>
+
+        <div class="control-group">
+          <label class="control-label" for="academic_session">Academic session</label>
+          <div class="controls">
+          <select name="academic_session" id="academic_session">
+            <% @sessions.each do |code, session_label| %>
+            <option value="<%= code %>"><%= session_label %></option>
+            <% end %>
+          </select>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="school">School</label>
+          <div class="controls">
+          <select name="school" id="school">
+            <% @schools.each do |school| %>
+            <option value="<%= school %>"><%= school %></option>
+            <% end %>
+          </select>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="department">Department</label>
+          <div class="controls">
+          <select name="department" id="department">
+            <option value="">Any department</option>
+          </select>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="department">Subject</label>
+          <div class="controls">
+          <select name="subject" id="subject">
+            <option value="">Any subject</option>
+          </select>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="course" id="course">Find course</label>
+          <div class="controls">
+            <input id="course_typeahead" type="text" class="input-xlarge"
+                   placeholder="Partial course string"/>
+            <%# <a href="#" id="show-bulk-select">Got a list of IDs?  Try a bulk selection</a> %>
+
+            <div id="selected_courses" class="selected-courses" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="submit" class="btn btn-primary">Grant permissions</button>
+          <button id="cancel" class="btn btn-cancel">Cancel</button>
+        </div>
+
+      </form>
+
+      <div id="bulk-select-modal" class="modal hide fade">
+        <h2>Bulk select</h2>
+
+        <p>If you have some text (from an email or spreadsheet)
+          containing IDs in formats like these:</p>
+
+        <ul>
+          <li>FA12:CFIII-UF:103:1:019</li>
+          <li>CFIII-UF_103_1_029_FA_12</li>
+        </ul>
+
+        <p>then try pasting the text into the box below.  The system
+          will pluck out the IDs from your text and match them to
+          courses.</p>
+
+        <div>
+          <textarea id="bulk_select"></textarea>
+        </div>
+        <button id="bulk_select_find" class="btn btn-primary">Find</button>
+        <button id="bulk_select_cancel" class="btn btn-cancel">Cancel</button>
+      </div>
+    </div>
+
+    <script src="jquery-1.8.0.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="surrogates.js"></script>
+
+    <script>
+      $(function () {
+
+          $('#course_typeahead').typeahead({
+            source: surrogates.course_search,
+            minLength: 3,
+            items: 1e6,
+            updater: surrogates.selected
+         });
+
+         $('#add_user_btn').click(surrogates.add_user);
+         $('#submit').click(surrogates.apply_updates);
+         $('#cancel').click(surrogates.reset_form);
+
+         $('#apply_limits').click(surrogates.apply_limits);
+
+         $('#next-button').click(surrogates.next_page);
+         $('#previous-button').click(surrogates.previous_page);
+
+         $('#bulk_select_find').click(surrogates.bulk_select_find);
+         $('#bulk_select_cancel').click(function () {
+           $('#bulk-select-modal').modal('hide');
+         });
+
+         $('#show-bulk-select').click(function () {
+           $('#bulk-select-modal').modal();
+         });
+
+
+         $('#academic_session').on('change', surrogates.load_dropdowns);
+         $('#school').on('change', surrogates.load_dropdowns);
+         $('#department').on('change', surrogates.load_dropdowns);
+
+         $('#school').trigger('change');
+
+         $('#school').add('#department').on('change', function () {
+           $('#course_typeahead').val('');
+         });
+
+         $('#limits_form').submit(function (e) {
+           e.preventDefault();
+           surrogates.apply_limits();
+           return false;
+         });
+
+         surrogates.show_table(0);
+     });
+    </script>
+
+
+  </body>
+</html>

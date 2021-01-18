@@ -1,0 +1,23 @@
+-- Oracle
+
+CREATE TABLE pasystem_banner_assign (
+  uuid varchar2(255),
+  user_id varchar2(99) DEFAULT NULL,
+  CONSTRAINT banner_assign_uuid_fk FOREIGN KEY (uuid) REFERENCES pasystem_banner_alert(uuid)
+);
+
+CREATE INDEX banner_assign_lower_user_id on pasystem_banner_assign (user_id);
+
+ALTER TABLE pasystem_banner_alert ADD open_campaign number(1) DEFAULT 1;
+
+
+-- MySQL
+
+CREATE TABLE `pasystem_banner_assign` (
+  `uuid` char(36),
+  `user_id` varchar(99) DEFAULT NULL,
+   FOREIGN KEY (uuid) REFERENCES pasystem_banner_alert(uuid),
+   INDEX `user_id` (`user_id`)
+);
+
+ALTER TABLE `pasystem_banner_alert` ADD COLUMN `open_campaign` int(1) NOT NULL DEFAULT '1';

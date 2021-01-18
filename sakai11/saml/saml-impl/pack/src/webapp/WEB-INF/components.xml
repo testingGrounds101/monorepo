@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="edu.nyu.classes.saml.api.SamlService"
+			class="edu.nyu.classes.saml.impl.SamlServiceImpl"
+                        init-method="init"
+                        destroy-method="destroy"
+			>
+	</bean>
+
+	<bean id="edu.nyu.classes.saml.api.SamlCertificateService"
+			class="edu.nyu.classes.saml.impl.SamlCertificateServiceImpl"
+                        init-method="init"
+                        destroy-method="destroy"
+			>
+	</bean>
+
+</beans>

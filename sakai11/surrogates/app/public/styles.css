@@ -1,0 +1,89 @@
+.user-entry {
+    margin-right: 1em;
+}
+
+.remove {
+    color: red;
+}
+
+.selected-courses {
+    margin-top: 1em;
+}
+
+.type {
+    padding-right: 0.5em;
+}
+
+.errors {
+    margin-top: 1em;
+    border: dotted red 1px;
+    background-color: #ffc2c2;
+    padding: 1em;
+    display: none;
+}
+
+#existing-user-display {
+    width: 80%;
+    text-align: left;
+    border-bottom: solid black 1px;
+}
+
+tr.header th {
+    border-top: solid black 1px;
+    border-bottom: solid black 1px;
+}
+
+.actions {
+    text-align: right;
+    padding-right: 0.5em;
+}
+
+.pagination {
+    width: 80%;
+}
+
+#next-button {
+    float: right;
+}
+
+#previous-button {
+    float: left;
+}
+
+button.action {
+    margin-left: 0.5em;
+}
+
+#bulk_select {
+    width: 800px;
+    height: 40em;
+    margin-bottom: 1em;
+}
+
+#bulk-select-modal {
+    width: 900px;
+    margin: -420px 0 0 -450px;
+    padding: 1em;
+}
+
+.limits {
+    background-color: #efefef;
+    padding-top: 5px;
+    text-align: center;
+    width: 80%;
+}
+
+.limit {
+    display: inline-block;
+    margin-right: 2em;
+    overflow: hidden;
+}
+
+.limit input {
+    padding: 0;
+}
+
+.limit_apply {
+    float: right;
+    margin-right: 5px;
+}

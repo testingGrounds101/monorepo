@@ -1,0 +1,59 @@
+.main-header {
+    margin: 20px;
+}
+
+.content-section {
+    width: 90%;
+    margin: 20px;
+}
+
+.panel-default {
+    width: 100% !important;
+    margin: 0 auto;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+th {
+    border-top: none !important;
+}
+
+.accordion-toggle:after, 
+.accordion-toggle.collapsed:after {
+    font-family: 'Glyphicons Halflings';
+    float: left;
+    color: grey;
+}
+
+.accordion-toggle:after {
+    content: "\e114";
+}
+
+.accordion-toggle.collapsed:after {
+    content: "\e080";
+}
+
+.panel-title {
+    margin-left: 5px;
+    display: inline;
+}
+
+.alerts {
+    display: none;
+    width: 80%;
+    margin: 5px auto;
+    border-radius: 3px;
+}
+
+.alert span {
+    margin: 0 5px;
+}
+
+.git-versioning-shown {
+    float:right;
+    margin-right: 10%;
+    font-size: .75em;
+    color: #ccc;
+}

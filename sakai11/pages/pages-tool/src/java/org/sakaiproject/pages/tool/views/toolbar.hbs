@@ -1,0 +1,23 @@
+{{#if canEdit}}
+  <div class="row sakai-pages-toolbar">
+    <div class="col-sm-6">
+      <a href="{{{baseURL}}}edit" class="button">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        {{{t this "edit"}}}
+      </a>
+    </div>
+    <div class="col-sm-6 text-right">
+      <form action="{{{baseURL}}}/visibility" method="post">
+        <label>
+          {{{t this "visibility"}}}
+          <input
+            type="checkbox"
+            name="visible"
+            onclick="this.form.submit();"
+            {{#if isVisible}}checked="checked"{{/if}}
+          >
+        </label>
+      </form>
+    </div>
+  </div>
+{{/if}}

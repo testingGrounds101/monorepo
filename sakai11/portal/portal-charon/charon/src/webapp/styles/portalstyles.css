@@ -1,0 +1,125 @@
+.toolSubMenuHolder {
+	/*background-color:#F0F0F0;*/ 
+	position: relative;
+	top: 4px;
+	border:1px solid #c0c0c0;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+.toolSubMenuHolder_top {
+}
+.toolSubMenuHolder_bottom {
+}
+.toolSubMenuHolder_bottom div {
+}
+.toolSubMenuHolder_content {
+}
+
+.toolSubMenuHolder_top div,.toolSubMenuHolder_top,
+.toolSubMenuHolder_bottom div, .toolSubMenuHolder_bottom {
+	width: 100%;
+	height: 8px;
+	font-size: 1px;
+}
+.toolSubMenuHolder_content, .toolSubMenuHolder_bottom {
+	margin-top: -5px;
+}
+.toolSubMenuHolder_content { padding: 0px; }
+
+.toolSubMenuHeading {
+	text-align: left;
+	padding-left: 2px;
+   background-color:#F0F0F0;
+   margin: 3px;
+}
+.toolSubMenuHolder_tools {
+	padding-left: 7px;
+	padding-right: 3px;
+}
+.toolSubMenuSpacer {
+	/* Uncomment the following if curvyCorners are not used */
+	display: none;
+	line-height: 6px;
+}
+
+
+/* Mediasite stuff */
+.mediasite-title {
+    font-weight: bold;
+    font-size: 150%;
+    margin-top: 10px;
+}
+.mediasite-description
+{
+    line-height: 140%;
+    margin: 10px 0;
+}
+.mediasite-airdate {
+    font-style: italic;
+    margin: 10px 0;
+}
+.mediasite-presenter-heading {
+    font-weight: bold;
+    margin-top: 10px;
+}
+ul.mediasite-presenter-list {
+    list-style-type: none;
+    padding: 0px;
+    margin: 10px 0;
+}
+.mediasite-presenter {
+    margin-bottom: 10px;
+    line-height: 140%;
+}
+.mediasite-thumbnail {
+    border: 5px solid #ccc;
+    float: right;
+    margin: 0 0 10px 10px;
+}
+.mediasite-tag-heading {
+    font-weight: bold;
+    margin: 10px 0;
+}
+ul.mediasite-tag-list {
+    list-style-type: none;
+    padding: 0px;
+    margin: 10px;
+}
+.mediasite-tag {
+    background-color: rgb(51, 51, 51);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-collapse: collapse;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    height: 14px;
+    line-height: 14px;
+    margin-bottom: 3px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    16Configuring your system
+    padding-top: 2px;
+    text-align: left;
+    text-shadow: rgba(0, 0, 0, 0.247059) 0px -1px 0px;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+.mediasite-catalog-icon {
+    background-image: url(/library/editor/ckextraplugins/Mediasite/images/video-play-32.gif) !important;
+    background-position: 0 0 !important;
+}
+.my-mediasite-icon {
+    background-image: url(/library/editor/ckextraplugins/Mediasite/images/atom.gif) !important;
+    background-position: 0 0 !important;
+}
+/* end mediasite stuff */

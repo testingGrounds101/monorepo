@@ -1,0 +1,14 @@
+.scorm-player-iframe {
+    display: block;
+    margin-top: 1em;
+    width: 95%;
+}
+
+.scorm-actions {
+    margin: 2em 0 2em 1em;
+}
+
+.scorm-actions .scorm-button {
+    padding: 5px;
+    margin-right: 5px;
+}

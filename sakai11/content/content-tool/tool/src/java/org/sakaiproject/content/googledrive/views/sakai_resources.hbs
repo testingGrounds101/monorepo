@@ -1,0 +1,165 @@
+<div class="sakai-resources">
+  <ul class="sakai-resources-breadcrumbs breadcrumb">
+    {{#each resource.breadcrumbs}}
+      <li class="breadcrumb-item {{#if @last}}active{{/if}}">
+        {{#if @last}}
+          {{label}}
+        {{else}}
+          <a data-path="{{id}}" href="{{baseURL}}sakai-resources{{id}}">{{label}}</a>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+
+  <div id="add-folder-modal" class="add-folder-modal modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Add a Folder</h4>
+        </div>
+        <form id="add-folder-form" method="POST" action="{{baseURL}}add-folder">
+          <input type="hidden" name="target" value="{{collectionId}}">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="folderName">Folder name</label>
+              <input type="text" class="form-control" id="folderName" name="name" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Folder</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="google-drive-modal" class="google-drive-modal modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Your Google Drive</h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Create Drive Links</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form id="file-upload-form" method="POST" action="{{baseURL}}upload-file" enctype="multipart/form-data">
+    <input name="upload-target" type="hidden" value="{{collectionId}}" />
+    <input id="file-upload" name="file-upload" type="file" style="display: none" />
+  </form>
+
+  <div class="btn-group sakai-resources-toolbar">
+    <button data-toggle="modal" data-target="#google-drive-modal" class="btn btn-default google-drive-show">Show my drive</button>
+    <button class="btn btn-default btn-upload-file">Upload a file</button>
+    <button data-toggle="modal" data-target="#add-folder-modal" class="btn btn-default btn-add-folder">Add a folder</button>
+    <!-- FIXME: delete when this stops being funny -->
+    <button id="buy-me-a-pony" class="btn btn-default">Buy me a pony</button>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="well">
+        <ul class="sakai-drive-menu">
+          <li>
+            <ul class="sakai-resources-tree"></ul>
+          </li>
+          <li class="sakai-drive-menu-item {{#if trash}}active{{/if}}">
+            <a data-path="/trash" href="{{baseURL}}trash" class="trash-show"><i class="fa fa-trash" aria-hidden="true"></i> <span class="sakai-drive-menu-item-text">Trash</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-10">
+    {{#if resource.children}}
+        <table class="table table-hover sakai-resources-table {{#if trash}}trash{{/if}}">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th class="col-xs-1">Access</th>
+              <th class="col-xs-2">Owner</th>
+              <th class="col-xs-1">Last Modified</th>
+              <th class="col-xs-1">Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each resource.children}}
+              <tr draggable="true">
+                <td class="name">
+                  {{#if trash}}
+                    <div class="drive-file {{typeClass}}">
+                      <a data-path="{{path}}" href="/access/content{{path}}">
+                        {{#each breadcrumbs}}
+                          <span>
+                            {{#if @last}}
+                              <span class="resource">{{label}}</span>
+                            {{else}}
+                              <span class="collection">{{label}}</span> 
+                            {{/if}}
+                          </span>
+                        {{/each}}
+                      </a>
+                    </div>
+                  {{else}}
+                    {{#if folder}}
+                      <div class="drive-folder"><a data-path="{{path}}" href="{{baseURL}}sakai-resources{{path}}">{{label}}</a></div>
+                    {{else}}
+                      <div class="drive-file {{typeClass}}"><a data-path="{{path}}" href="/access/content{{path}}">{{label}}</a></div>
+                    {{/if}}
+                  {{/if}}
+                </td>
+                <td class="access">{{accessSummary}}</td>
+                <td class="owner">{{owner}}</td>
+                <td class="last-modified">{{lastModified}}</td>
+                <td class="size">{{size}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      {{else}}
+        <br>
+        <div class="alert alert-info">
+          <p>Folder is empty.</p>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+
+  <script>
+    var baseURL = "{{baseURL}}";
+    var collectionId = "{{collectionId}}";
+
+    new GoogleDriveModal($('.google-drive-modal'), baseURL);
+
+    $('#file-upload').on('change', function () {
+      $('#file-upload-form').submit();
+    });
+
+    $('.btn-upload-file').on('click', function () {
+      $('#file-upload').click();
+
+      return false;
+    });
+
+   /* FIXME: delete when this stops being funny */
+   $('#buy-me-a-pony').on('click', function () {
+     window.location.href = 'https://www.youtube.com/watch?v=HmWkgZ-b6sk';
+   });
+
+    $('.add-folder-modal').on('shown.bs.modal', function() {
+        $('#folderName').focus();
+    });
+
+   $(document).ready(function() {
+       new SakaiDrive(baseURL, collectionId);
+   });
+  </script>
+</div>

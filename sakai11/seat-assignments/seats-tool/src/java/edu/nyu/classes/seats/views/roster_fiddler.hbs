@@ -1,0 +1,18 @@
+<form action="{{baseURL}}/roster-fiddler">
+
+    <select name="rosterId">
+        {{#each validFiddleSections}}
+            <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+
+    <select name="netid">
+        {{#each validFiddleNetIDs}}
+            <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+
+    <label><input type="checkbox" name="remove" value="remove"> Remove from roster?</label>
+
+    <input type="submit">
+</form>

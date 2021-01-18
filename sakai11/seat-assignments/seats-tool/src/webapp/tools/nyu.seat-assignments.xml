@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<registration>
+    <tool id="nyu.seat-assignments"
+          title="Seating Assignments"
+          description="For managing your seat assignments">
+        <category name="course"/>
+    </tool>
+</registration>

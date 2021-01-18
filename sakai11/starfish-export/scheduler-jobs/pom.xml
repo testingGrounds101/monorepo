@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.sakaiproject.gradebook</groupId>
+    	<artifactId>starfish-export</artifactId>
+    	<version>1.0</version>
+ 	</parent>
+ 	
+	<name>Starfish Export :: Jobs</name>
+	<groupId>org.sakaiproject.gradebook</groupId>
+  	<artifactId>starfish-export-jobs</artifactId>
+  	<version>1.0</version>
+
+	<packaging>jar</packaging>
+  	<!-- dont specify a deploy target, this will be bundled into the component -->
+  	
+	<dependencies>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>org.sakaiproject.kernel</groupId>
+            <artifactId>sakai-kernel-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.kernel</groupId>
+            <artifactId>sakai-component-manager</artifactId>
+        </dependency>
+        <dependency>
+			<groupId>org.sakaiproject.kernel</groupId>
+  			<artifactId>sakai-kernel-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+  			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.sakaiproject.edu-services.course-management</groupId>
+  			<artifactId>coursemanagement-api</artifactId>
+  		</dependency>
+  		<dependency>
+			<groupId>org.sakaiproject.edu-services.gradebook</groupId>
+  			<artifactId>gradebook-service-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.sakaiproject.edu-services.gradebook</groupId>
+  			<artifactId>gradebook-service-hibernate</artifactId>
+		</dependency>
+  		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+  			<artifactId>commons-lang</artifactId>
+		</dependency>
+	</dependencies>
+
+	
+</project>

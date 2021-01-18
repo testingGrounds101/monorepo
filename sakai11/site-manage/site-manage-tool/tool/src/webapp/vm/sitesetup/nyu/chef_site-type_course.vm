@@ -1,0 +1,65 @@
+##<!-- $Header: /cvs/sakai2/legacy/tools/src/webapp/vm/sitesetup/chef_site-type.vm,v 1.3 2005/06/04 02:41:16 ggolden.umich.edu Exp $ -->
+<link type="text/css" href="/sakai-site-manage-tool/css/site-manage.nyu.css?version=1502944368" rel="stylesheet" media="screen" />
+<script type="text/javascript" language="JavaScript">
+    $(document).ready(function(){
+        sakai.siteTypeSetup()
+    });
+</script>
+<div class ="portletBody">
+
+    <h3>
+        Academic Term or Year
+    </h3>
+    <textarea id="templateControls" style="display:none">$templateControls</textarea>
+
+    <input type="text" id="courseSiteTypes" style="display:none" value="$courseSiteTypeStrings">
+
+    #if ($alertMessage)<div class="alertMessage">$tlang.getString("sitetype.alert") $alertMessage</div>  #end
+    <p class="site-setup-messages">
+        Choose your Academic Term:
+    </p>
+    <form name="typeform" id="typeform" action="#toolForm("$action")" method="post">
+    <div id="siteTypeList">
+        #if ($canAddCourse)
+        <input type="hidden" name="itemType" id="course" value="course" />
+        <div class="indnt3" id="termList">
+            <p class="required">
+                <span class ="reqStar" id="term-required" style="height:1em;border:1px solid transparent"> * </span>
+                <label for="selectTerm">
+                    $tlang.getString("sitetype.acater")
+                </label>
+                <select name="selectTerm" id="selectTerm">  ## onclick="selectSiteType('$type')"
+                    #foreach($term in $termList)
+                    <option value ="$term.eid"
+                    #if ($!selectedTerm)
+                    #if ($term.eid == $selectedTerm.eid)
+                    selected="selected"
+                    #end
+                    #else
+                    #if ($term.isCurrentTerm())
+                    selected="selected"
+                    #end
+                    #end
+                    >
+                    $term.title
+                    </option>
+                    #end
+                </select>
+            </p>
+        </div>
+        #end
+    </div>
+
+    <input type="hidden" name="back" value="$!backIndex" />
+    <input type="hidden" name="templateIndex" value="$!templateIndex" />
+    <input type="hidden" name="eventSubmit_doSite_type_option" value="x" />
+    <input type="hidden" name="option" value="cancel" />
+    <div class ="act" style="padding-top:1em;">
+        <input type="submit" accesskey="s"  id="submitBuildOwn" class="active" name="submitBuildOwn" value="$tlang.getString('sitetype.con')" onclick="showNotif('submitnotif','submitBuildOwn','typeform'); document.typeform.option.value='siteType'; document.typeform.submit(); return false;" />
+        <input type="submit" accesskey="x" id="cancelCreate" name="cancelCreate" value="$tlang.getString('sitetype.can')" onclick="document.typeform.option.value='cancel'; document.typeform.submit(); return false;" />
+        <span id="submitnotif" style="visibility:hidden">$tlang.getString("gen.proces")</span>
+    </div>
+
+    <input type="hidden" name="sakai_csrf_token" value="$sakai_csrf_token" />
+    </form>
+</div>

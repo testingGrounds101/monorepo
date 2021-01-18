@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="{{{skinRepo}}}/tool_base.css?t=1487894805" />
+
+        {{{randomSakaiHeadStuff}}}
+
+        <link rel="stylesheet" type="text/css" href="/groupersync-tool/stylesheets/groupersync.css?t=1487894805" />
+    </head>
+    <body>
+
+        <div class="portletBody groupersync-body">
+            {{{subpage this subpage}}}
+        </div>
+
+        <script>includeLatestJQuery('layout.hbs');</script>
+
+        <script type="text/javascript" src="/groupersync-tool/scripts/groupersync.js"></script>
+        <script>
+         var config = {
+             maxDescriptionLength: {{{maxDescriptionLength}}},
+             maxAddressLength: {{{maxAddressLength}}},
+             descriptionExcludedCharacters: '{{{descriptionExcludedCharacters}}}',
+             addressAllowedCharacters: '{{{addressAllowedCharacters}}}',
+             whitespaceReplacementCharacter: '{{{whitespaceReplacementCharacter}}}',
+         };
+         var grouper = new GrouperSync('{{{baseUrl}}}', config);
+        </script>
+
+        <script>
+            function resizeFrame()
+            {
+                if (top.location !== self.location) {
+                    var frame = parent.document.getElementById(window.name);
+                }
+                if (frame) {
+                    var clientH = document.body.clientHeight;
+
+                    if (clientH < 600) {
+                        clientH = 600;
+                    }
+
+                    // set the min height to be the portletMainWrap height so the modal
+                    // mask fills the entire portlet panel
+                    if (frame.parentElement.className.indexOf("portletMainWrap") >= 0) {
+                        if (frame.parentElement.style.minHeight) {
+                            clientH = Math.max(parseInt(frame.parentElement.style.minHeight), clientH);
+                        }
+                    }
+
+                    if ($(frame).height() < clientH) {
+                        $(frame).height(clientH);
+                    }
+                }
+            }
+            resizeFrame();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+.custom-role-status {
+    width: 50px !important;
+    padding: 6px 12px !important;
+    margin: 0px 3px;
+}
+
+.custom-role-button > div {
+    float: right;
+    display: inline;
+}
+
+.column-role {
+    width: 33.3%;
+}

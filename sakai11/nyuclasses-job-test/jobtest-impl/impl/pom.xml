@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>jobtest-impl</name>
+  <groupId>edu.nyu.classes.jobtest</groupId>
+  <artifactId>jobtest-impl</artifactId>
+  
+  <packaging>jar</packaging>
+  
+  <parent>
+    <artifactId>jobtest-base</artifactId>
+    <groupId>edu.nyu.classes.jobtest</groupId>
+    <version>12.5</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <properties>
+    <deploy.target>shared</deploy.target>
+  </properties>
+
+
+  <dependencies>
+    
+    <!--  Sakai dependencies -->
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-component-manager</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.sakaiproject.scheduler</groupId>
+      <artifactId>scheduler-api</artifactId>
+    </dependency>
+
+  </dependencies>
+
+</project>

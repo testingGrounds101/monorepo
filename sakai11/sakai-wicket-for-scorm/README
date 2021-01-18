@@ -1,0 +1,21 @@
+Sakai Wicket README
+-------------------------------------------------
+
+Updated Aug 12, 2008
+
+
+The goal of this project is to provide a base dependency for Wicket use within Sakai, and to collect together various
+Wicket components and utility classes that will make it easy to build a standard Sakai tool. 
+
+To get started, this project should be checked out into the sakai project directory the module "sakai-wicket" should be
+added to the root pom.xml. This will allow maven 2 to find the sakai-wicket project and build it. 
+
+We are now planning to add a built jar of this project to the Sakai maven repo, versioned independently of the Sakai Project 
+versioning scheme. 
+
+An example project that shows how to add "sakai-wicket" as a dependency and how to minimally integrate Wicket into Sakai
+is available at sakai-wicket-template. This should also be checked out to the sakai root directory and added to the pom.xml
+if you wish to build that example. 
+
+
+

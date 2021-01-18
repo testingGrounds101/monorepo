@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="{{BASE_URL}}" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="{{BASE_URL}}" xmlns:intf="{{BASE_URL}}" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="nyugrades" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">                                                                                                                                                                                                  
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="nyugrades" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <element name="grades">
+    <sequence>
+     <element name="grade">
+      <complexType>
+       <element name="netid" type="xsd:string"/>
+       <element name="emplid" type="xsd:string"/>
+       <element name="gradeletter" type="xsd:string"/>
+      </complexType>
+     </element>
+    </sequence>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="login{{REQUEST_SUFFIX}}Response">
+
+      <wsdl:part name="login{{REQUEST_SUFFIX}}Return" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="logout{{REQUEST_SUFFIX}}Response">
+
+      <wsdl:part name="logout{{REQUEST_SUFFIX}}Return" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGradesForSite{{REQUEST_SUFFIX}}Request">
+
+      <wsdl:part name="sessionId" type="xsd:string"/>
+
+      <wsdl:part name="courseId" type="xsd:string"/>
+
+      <wsdl:part name="term" type="xsd:string"/>
+
+      <wsdl:part name="sessionCode" type="xsd:string"/>
+
+      <wsdl:part name="classSection" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="logout{{REQUEST_SUFFIX}}Request">
+
+      <wsdl:part name="sessionId" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="login{{REQUEST_SUFFIX}}Request">
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="password" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGradesForSite{{REQUEST_SUFFIX}}Response">
+
+      <wsdl:part name="getGradesForSite{{REQUEST_SUFFIX}}Return" type="tns1:grades"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="NYUGrades{{REQUEST_SUFFIX}}">
+
+      <wsdl:operation name="login{{REQUEST_SUFFIX}}" parameterOrder="username password">
+
+         <wsdl:input message="impl:login{{REQUEST_SUFFIX}}Request" name="login{{REQUEST_SUFFIX}}Request"/>
+
+         <wsdl:output message="impl:login{{REQUEST_SUFFIX}}Response" name="login{{REQUEST_SUFFIX}}Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logout{{REQUEST_SUFFIX}}" parameterOrder="sessionId">
+
+         <wsdl:input message="impl:logout{{REQUEST_SUFFIX}}Request" name="logout{{REQUEST_SUFFIX}}Request"/>
+
+         <wsdl:output message="impl:logout{{REQUEST_SUFFIX}}Response" name="logout{{REQUEST_SUFFIX}}Response"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGradesForSite{{REQUEST_SUFFIX}}" parameterOrder="sessionId courseId term sessionCode classSection">
+
+         <wsdl:input message="impl:getGradesForSite{{REQUEST_SUFFIX}}Request" name="getGradesForSite{{REQUEST_SUFFIX}}Request"/>
+
+         <wsdl:output message="impl:getGradesForSite{{REQUEST_SUFFIX}}Response" name="getGradesForSite{{REQUEST_SUFFIX}}Response"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="NYUGrades{{REQUEST_SUFFIX}}SoapBinding" type="impl:NYUGrades{{REQUEST_SUFFIX}}">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="login{{REQUEST_SUFFIX}}">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="login{{REQUEST_SUFFIX}}Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="login{{REQUEST_SUFFIX}}Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="{{BASE_URL}}" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logout{{REQUEST_SUFFIX}}">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="logout{{REQUEST_SUFFIX}}Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="logout{{REQUEST_SUFFIX}}Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="{{BASE_URL}}" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getGradesForSite{{REQUEST_SUFFIX}}">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getGradesForSite{{REQUEST_SUFFIX}}Request">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getGradesForSite{{REQUEST_SUFFIX}}Response">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="{{BASE_URL}}" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="NYUGrades{{REQUEST_SUFFIX}}Service">
+
+      <wsdl:port binding="impl:NYUGrades{{REQUEST_SUFFIX}}SoapBinding" name="NYUGrades{{REQUEST_SUFFIX}}">
+
+         <wsdlsoap:address location="{{BASE_URL}}"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

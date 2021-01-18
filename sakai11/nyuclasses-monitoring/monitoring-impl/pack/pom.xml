@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>monitoring-base</artifactId>
+    <groupId>edu.nyu.classes.monitoring</groupId>
+    <version>12.5</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <name>monitoring-pack</name>
+  <groupId>edu.nyu.classes.monitoring</groupId>
+  <artifactId>monitoring-pack</artifactId>
+  <packaging>sakai-component</packaging>
+  <properties>
+    <deploy.target>components</deploy.target>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>edu.nyu.classes.monitoring</groupId>
+      <artifactId>monitoring-impl</artifactId>
+      <version>12.5</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <resources/>
+  </build>
+</project>

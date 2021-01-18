@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>saml-impl</name>
+  <groupId>edu.nyu.classes.saml</groupId>
+  <artifactId>saml-impl</artifactId>
+  
+  <packaging>jar</packaging>
+  
+  <parent>
+    <artifactId>saml-base</artifactId>
+    <groupId>edu.nyu.classes.saml</groupId>
+    <version>12.5</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <properties>
+    <deploy.target/>
+  </properties>
+
+
+  <dependencies>
+    
+    <!--  Sakai dependencies -->
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-kernel-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-kernel-util</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.sakaiproject.kernel</groupId>
+      <artifactId>sakai-component-manager</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.opensaml</groupId>
+      <artifactId>opensaml</artifactId>
+      <!--
+           Warning!  If you change this version, you might need to also update:
+
+             saml/saml-impl/impl/src/java/edu/nyu/classes/saml/impl/NoVelocitySamlBootstrap.java
+
+           this is a copy of opensaml's DefaultBootstrap.java, with
+           the bits that initialise Velocity removed (since they
+           conflicted with the version that ships with CLE).  I had to
+           copy this because everything is static and I couldn't
+           create a subclass.  Sigh.
+      -->
+      <version>2.5.1-1</version>
+    </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>edu.nyu.classes.saml</groupId>
+      <artifactId>saml-api</artifactId>
+      <version>12.5</version>
+    </dependency>
+
+  </dependencies>
+
+</project>
